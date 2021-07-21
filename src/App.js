@@ -5,8 +5,11 @@ import {Grid,
   Typography,
 TextField,
 Button,
+ Checkbox,
 }from '@material-ui/core';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import EmailRoundedIcon from '@material-ui/icons/EmailRounded';
+import DeleteIcon from '@material-ui/icons/Delete';
 import {
   BrowserRouter as Router,
   Switch,
@@ -41,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat'
   },
+  button: {
+    margin: theme.spacing(1),
+  }
 
 }));
 
@@ -62,16 +68,30 @@ fontSize: '46px', letterSpacing: '-2px', color: '#333', lineHeight: '1.1', fontW
     
     <Grid align='center'>
     <form>
-      <TextField fullwidth label="Enter Your Name:" />
-      <TextField fullwidth label="Email Address" />
-      <TextField fullwidth label="Create Password" />
-      <TextField fullwidth label="Confirm Password" />
 
-      <Button variant="contained" color="primary" endIcon={<Icon>send</Icon>}
-      >
-         Send
+    <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Email Address:" />
+
+    <TextField variant="outlined" margin="normal" required fullWidth id="nm" placeholder="Enter Your Name" name="nm" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Name:" />
+     
+    <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Create Password" type="password" id="password" />
+
+<TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Confirm Password" type="password" id="password" />
+
+<FormControlLabel
+        control={
+          <Checkbox
+            name="checkedB"
+            color="primary"
+          fullWidth/>
+        }
+        label="Accept Terms & Conditions"
+      />
+       
+<Button
+        variant="contained" className={classes.button} startIcon={<DeleteIcon />}
+      fullWidth>
+        Delete
       </Button>
-    
     </form>
     </Grid>
           </Grid>
