@@ -74,7 +74,7 @@ export default function App() {
           <Grid id="formSetting" style={{ padding: '20px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', textAlign: 'center', }} >
           <Grid container spacing={1}>
             <Paper     elevation ={0} className={classes.paper} id="left">
-             <Grid item xs={6} >
+             <Grid item xs={10} >
 
              <Grid align='center'>
                 <h2 style={{overflow: 'visible', whiteSpace: 'pre', fontSize: '46px', letterSpacing: '-2px', color: '#333', lineHeight: '1.1', fontWeight: 700, fontStyle: 'normal', fontFamily: 'Arvo, serif', margin:0, }}>
