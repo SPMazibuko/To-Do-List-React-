@@ -8,8 +8,7 @@ Button,
  Checkbox,
 }from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import EmailRoundedIcon from '@material-ui/icons/EmailRounded';
-import DeleteIcon from '@material-ui/icons/Delete';
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import {
   BrowserRouter as Router,
   Switch,
@@ -77,22 +76,23 @@ fontSize: '46px', letterSpacing: '-2px', color: '#333', lineHeight: '1.1', fontW
 
 <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Confirm Password" type="password" id="password" />
 
-<FormControlLabel
-        control={
-          <Checkbox
-            name="checkedB"
-            color="primary"
-          fullWidth/>
-        }
-        label="Accept Terms & Conditions"
-      />
+<FormControlLabel control={<Checkbox name="checkedB" color="primary"
+fullWidth/>} label="Accept Terms & Conditions" />
        
-<Button
-        variant="contained" className={classes.button} startIcon={<DeleteIcon />}
+<Button type='submit' color="primary" variant="contained" className={classes.button} startIcon={<ExitToAppRoundedIcon />}
       fullWidth>
-        Delete
+        SIGN UP
       </Button>
     </form>
+    <Grid container>
+                        <Grid item xs>
+                        </Grid>
+                      <Grid item>
+                        <Link href="#" variant="body2">
+                         {"Already have an account? Sign Up"}
+                        </Link>
+                      </Grid>
+                      </Grid>
     </Grid>
           </Grid>
         </Paper>
