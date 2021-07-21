@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     margin: theme.spacing(1),
+    
   },
   image: {
     backgroundImage: 'url(https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/218230350_6101479503258632_6092955877124397050_n.jpg?_nc_cat=105&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeEFa4M1tk0O-rvUgNMiEp8YWkTzqeHoTLBaRPOp4ehMsPxFGP31U8vyn4FAcMj3gIC-HQHFOzuBcfQ6Amq0a2C5&_nc_ohc=GCvAhaJeFCsAX_LqbjE&tn=6VvZ5GfI6aYD5Tzn&_nc_ht=scontent.fjnb11-1.fna&oh=e6177222a48f69dfcb3c3c2488cf9dfe&oe=60FD54B2)',
@@ -69,58 +70,155 @@ export default function App() {
   const classes = useStyles();
   return (
     <Router> 
-      <Grid id="main" >
-        <Paper elevation={20} className={classes.root} id="mainPaper" >
-          <Grid id="formSetting" style={{ padding: '20px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', textAlign: 'center', }} >
-          <Grid container spacing={1}>
-            <Paper     elevation ={0} className={classes.paper} id="left">
-             <Grid item xs={10} >
+      <Switch>
+          <Route path="/Signup">
+            <Signup />
+          </Route>
+          <Route path="/Login">
+            <Login />
+          </Route>
+          <Route path="/">
+            <Signup />
+          </Route>
+      </Switch>
+    </Router>
+  );
+}
 
-             <Grid align='center'>
-                <h2 style={{overflow: 'visible', whiteSpace: 'pre', fontSize: '46px', letterSpacing: '-2px', color: '#333', lineHeight: '1.1', fontWeight: 700, fontStyle: 'normal', fontFamily: 'Arvo, serif', margin:0, }}>
-                Create An Account
-                </h2>
+function Signup(){
+  const classes = useStyles();
+  return(
+  <Grid id="main" >
+  <Paper elevation={20} className={classes.root} id="mainPaper" >
+    <Grid id="formSetting" style={{ padding: '20px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', textAlign: 'center', }} >
+    <Grid container spacing={1}>
+      <Paper     elevation ={0} className={classes.paper} id="left">
+       <Grid item xs={10} >
 
-                <Typography variant='caption'>
-                   Please fill up all fields in this form
-                </Typography>
+       <Grid align='center'>
+          <h2 style={{overflow: 'visible', whiteSpace: 'pre', fontSize: '46px', letterSpacing: '-2px', color: '#333', lineHeight: '1.1', fontWeight: 700, fontStyle: 'normal', fontFamily: 'Arvo, serif', margin:0, }}>
+          Create An Account
+          </h2>
 
-                
-                  <form>
+          <Typography variant='caption'>
+             Please fill up all fields in this form
+          </Typography>
 
-                    <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Email Address:" />
+          
+            <form>
 
-                    <TextField variant="outlined" margin="normal" required fullWidth id="nm" placeholder="Enter Your Name" name="nm" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Name:" />
-     
-                    <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Create Password" type="password" id="password" />
+              <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Email Address:" />
 
-                    <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Confirm Password" type="password" id="password" />
+              <TextField variant="outlined" margin="normal" required fullWidth id="nm" placeholder="Enter Your Name" name="nm" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Name:" />
 
-                    <FormControlLabel control={<Checkbox name="checkedB" color="primary" fullWidth variant="contained"/>} label="Accept Terms & Conditions" />
-       
-                    <Button type='submit' color="primary" variant="contained" className={classes.button} startIcon={<ExitToAppRoundedIcon />} fullWidth>
-                      SIGN UP
-                    </Button>
-                  </form>
-                  <Grid container>
-                    <Grid item xs>
-                      <Grid item>
-                        <Link href="#" variant="body2">
-                          {"Already have an account? Sign Up"}
-                        </Link>
-                      </Grid>
-                    </Grid>
-                  </Grid>
+              <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Create Password" type="password" id="password" />
+
+              <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Confirm Password" type="password" id="password" />
+
+              <FormControlLabel control={<Checkbox name="checkedB" color="primary" fullWidth variant="contained"/>} label="Accept Terms & Conditions" />
+ 
+              <Button type='submit' color="primary" variant="contained" className={classes.button} startIcon={<ExitToAppRoundedIcon />} fullWidth 
+              onClick={()=>{  
+                firebase.auth().createUserWithEmailAndPassword("spmazibuko07@gmail.com", "123456")
+            .then((userCredential) => {
+      // Signed in 
+             var user = userCredential.user;
+              console.log(user)
+    // ...
+        })
+         .catch((error) => {
+           var errorCode = error.code;
+           var errorMessage = error.message;
+           console.log(error.message) });}}>
+                SIGN UP
+              </Button>
+            </form>
+            <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    {"Forgot password?"}
+                  </Link>
                 </Grid>
+                <Grid item>
+                <Link href="#" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
               </Grid>
-            </Paper>
+            </Grid>
           </Grid>
-           </Grid>
-        <Grid item xs={6}>
-          <div  className={classes.image}/>
         </Grid>
       </Paper>
     </Grid>
-    </Router>
-  );
+     </Grid>
+  <Grid item xs={6}>
+    <div  className={classes.image}/>
+  </Grid>
+</Paper>
+</Grid>)
+  
+}
+
+function Login(){
+  const classes = useStyles();
+  return(
+  <Grid id="main" >
+  <Paper elevation={20} className={classes.root} id="mainPaper" >
+    <Grid id="formSetting" style={{ padding: '20px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', textAlign: 'center', }} >
+    <Grid container spacing={1}>
+      <Paper elevation ={0} className={classes.paper} id="left">
+       <Grid item xs={10} >
+
+       <Grid align='center'>
+          <h2 style={{overflow: 'visible', whiteSpace: 'pre', fontSize: '46px', letterSpacing: '-2px', color: '#333', lineHeight: '1.1', fontWeight: 700, fontStyle: 'normal', fontFamily: 'Arvo, serif', margin:0, }}>
+          SIGN IN
+          </h2>
+
+          <Typography variant='caption'>
+             
+          </Typography>
+
+          
+            <form>
+
+              <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Email Address:" />
+
+              <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Enter Password" type="password" id="password" />
+
+              <FormControlLabel control={<Checkbox name="remember" color="primary" fullWidth variant="contained"/>} label="remember me" />
+ 
+              <Button type='submit' color="primary" variant="contained" className={classes.button} startIcon={<ExitToAppRoundedIcon />} fullWidth 
+              onClick={()=>{  
+                firebase.auth().createUserWithEmailAndPassword("kamo@gmail.com", "123456")
+            .then((userCredential) => {
+      // Signed in 
+             var user = userCredential.user;
+              console.log(user)
+    // ...
+        })
+         .catch((error) => {
+           var errorCode = error.code;
+           var errorMessage = error.message;
+           console.log(error.message) });}}>
+                SIGN UP
+              </Button>
+            </form>
+            <Grid container>
+              <Grid item xs>
+                <Grid item>
+                  <Link href="#" variant="body2">
+                    {"Already have an account? Log in"}
+                  </Link>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Grid>
+     </Grid>
+  <Grid item xs={6}>
+    <div  className={classes.image}/>
+  </Grid>
+</Paper>
+</Grid>)
 }
