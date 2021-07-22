@@ -248,7 +248,7 @@ export default function App() {
 function Signup(){
   const classes = useStyles();
   const [user, setUser] = useState('')
-  const [mail, setMail] = useState('')
+  const [email, setEmail] = useState('')
   const [password,setPassword] = useState('')
   const [emailError, setEmailError]=useState('');
   const [PasswordError, setPasswordError] = useState('');
@@ -332,18 +332,7 @@ function Signup(){
               <FormControlLabel control={<Checkbox name="checkedB" color="primary" fullWidth variant="contained"/>} label="Accept Terms & Conditions" />
  
               <Button type='submit' color="primary" variant="contained" className={classes.button} startIcon={<ExitToAppRoundedIcon />} fullWidth 
-              onClick={()=>{  
-                firebase.auth().createUserWithEmailAndPassword(mail, password)
-            .then((userCredential) => {
-      // Signed in 
-             var user = userCredential.user;
-              console.log(user)
-    // ...
-        })
-         .catch((error) => {
-           var errorCode = error.code;
-           var errorMessage = error.message;
-           console.log(error.message) });}}>
+              onClick={handleSignUp}>
                 SIGN UP
               </Button>
             </form>
@@ -373,11 +362,10 @@ function Login(){
   const classes = useStyles();
 
   const [user, setUser] = useState('')
-  const [mail, setMail] = useState('')
+  const [email, setEmail] = useState('')
   const [password,setPassword] = useState('')
   const [emailError, setEmailError]=useState('');
   const [PasswordError, setPasswordError] = useState('');
-  const [hasAccount,, setHasAccount] = useState(false);
 
   const clearInputs=()=>{
     setEmail('');
@@ -428,6 +416,7 @@ function Login(){
     authListener();
     },[])
 
+
   return(
   <Grid id="main" >
   <Paper elevation={20} className={classes.root} id="mainPaper" >
@@ -448,25 +437,16 @@ function Login(){
           
             <form>
 
-              <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Email Address:" />
+              <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Email Address:" value={email} onChange={(e) => setEmail(e.target.value)}/>
+              <p className="errorMsg">{emailError}</p>
 
-              <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Enter Password" type="password" id="password" />
+              <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Enter Password" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <p className="errorMsg">{PasswordError}</p>
 
               <FormControlLabel control={<Checkbox name="remember" color="primary" fullWidth variant="contained"/>} label="remember me" />
- 
+  
               <Button type='submit' color="primary" variant="contained" className={classes.button} startIcon={<ExitToAppRoundedIcon />} fullWidth 
-              onClick={()=>{  
-                firebase.auth().createUserWithEmailAndPassword("kamo@gmail.com", "123456")
-            .then((userCredential) => {
-      // Signed in 
-             var user = userCredential.user;
-              console.log(user)
-    // ...
-        })
-         .catch((error) => {
-           var errorCode = error.code;
-           var errorMessage = error.message;
-           console.log(error.message) });}}>
+              onClick={handleLogin}>
                 SIGN IN
               </Button>
             </form>
@@ -495,7 +475,7 @@ function Login(){
 }
 
 function Todo(){
-
+  
 return(
 <div style={{ display: "flex" }}>
       <div
