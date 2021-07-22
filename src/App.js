@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import {Grid, 
   Paper,
@@ -196,8 +196,6 @@ const routes = [
 },
 ];
 
-
-
 export default function App() {
   const classes = useStyles();
 
@@ -249,12 +247,14 @@ export default function App() {
 
 function Signup(){
   const classes = useStyles();
+  const [mail, setMail] = useState('')
+  const [password,setPassword] = useState('')
   return(
-  <Grid id="main" >
+  <Grid id="main" container spacing={0} >
   <Paper elevation={20} className={classes.root} id="mainPaper" >
     <Grid id="formSetting" style={{ padding: '20px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', textAlign: 'center', }} >
     <Grid container spacing={1}>
-      <Paper     elevation ={0} className={classes.paper} id="left">
+      <Paper elevation ={0} className={classes.paper} id="left">
        <Grid item xs={10} >
 
        <Grid align='center'>
@@ -268,12 +268,11 @@ function Signup(){
 
           
             <form>
-
-              <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Email Address:" />
-
               <TextField variant="outlined" margin="normal" required fullWidth id="nm" placeholder="Enter Your Name" name="nm" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Name:" />
 
-              <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Create Password" type="password" id="password" />
+              <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Email Address:" onChange={event => setMail(event.target.value)}/>
+
+              <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Create Password" type="password" id="password" onChange={event => setPassword(event.target.value)}/>
 
               <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Confirm Password" type="password" id="password" />
 
@@ -281,7 +280,7 @@ function Signup(){
  
               <Button type='submit' color="primary" variant="contained" className={classes.button} startIcon={<ExitToAppRoundedIcon />} fullWidth 
               onClick={()=>{  
-                firebase.auth().createUserWithEmailAndPassword("spmazibuko07@gmail.com", "123456")
+                firebase.auth().createUserWithEmailAndPassword(mail, password)
             .then((userCredential) => {
       // Signed in 
              var user = userCredential.user;
