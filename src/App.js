@@ -254,7 +254,18 @@ function Signup(){
   const [PasswordError, setPasswordError] = useState('');
   const [hasAccount,, setHasAccount] = useState(false);
 
+  const clearInputs=()=>{
+    setEmail('');
+    setPassword('');
+    }
+
+  const clearErrors=()=>{
+    setEmailError('');
+    setPasswordError('');
+  }
+
   const handleSignUp = () =>{
+    clearErrors();
     firebase
       .auth()
       .createUserWithEmailAndPassword(mail, password)
@@ -272,6 +283,11 @@ function Signup(){
     }
 
     const handleLogOut = () =>{
+      firebase.auth().signOut();
+     
+    }
+
+    const authListener = () =>{
       firebase.auth().onAuthStateChanged(user =>{
         if(user){
           setUser(user)
@@ -280,11 +296,10 @@ function Signup(){
         }
       })
     }
-      
-       
-      const authListener = () =>{
-        firebase.auth().signOut();
-        }
+     
+  useEffect(() => {
+    authListener();
+    },[])
 
   return(
   <Grid id="main" container spacing={0} >
@@ -363,7 +378,18 @@ function Login(){
   const [PasswordError, setPasswordError] = useState('');
   const [hasAccount,, setHasAccount] = useState(false);
 
+  const clearInputs=()=>{
+    setEmail('');
+    setPassword('');
+    }
+
+  const clearErrors=()=>{
+    setEmailError('');
+    setPasswordError('');
+  }
+
   const handleLogin = () =>{
+    clearErrors();
     firebase
       .auth()
       .signInWithEmailAndPassword(mail, password)
@@ -380,6 +406,26 @@ function Login(){
         }
       });
     }
+
+    const handleLogOut = () =>{
+      firebase.auth().signOut();
+     
+    }
+
+    const authListener = () =>{
+      firebase.auth().onAuthStateChanged(user =>{
+        if(user){
+          setUser(user)
+        }else{
+          setUser("")
+        }
+      })
+    }
+     
+  useEffect(() => {
+    authListener();
+    },[])
+    
   return(
   <Grid id="main" >
   <Paper elevation={20} className={classes.root} id="mainPaper" >
