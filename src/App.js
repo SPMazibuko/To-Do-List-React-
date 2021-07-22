@@ -247,8 +247,45 @@ export default function App() {
 
 function Signup(){
   const classes = useStyles();
+  const [user, setUser] = useState('')
   const [mail, setMail] = useState('')
   const [password,setPassword] = useState('')
+  const [emailError, setEmailError]=useState('');
+  const [PasswordError, setPasswordError] = useState('');
+  const [hasAccount,, setHasAccount] = useState(false);
+
+  const handleSignUp = () =>{
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(mail, password)
+      .catch((err)=>{
+        switch(err.code){
+          case "auth/email-already-in-use":
+          case "auth/invalid-email":
+          setEmailError(err.message);
+          break;
+          case"auth/weak-password":
+          setPasswordError(err.message);
+          break;
+        }
+      });
+    }
+
+    const handleLogOut = () =>{
+      firebase.auth().onAuthStateChanged(user =>{
+        if(user){
+          setUser(user)
+        }else{
+          setUser("")
+        }
+      })
+    }
+      
+       
+      const authListener = () =>{
+        firebase.auth().signOut();
+        }
+
   return(
   <Grid id="main" container spacing={0} >
   <Paper elevation={20} className={classes.root} id="mainPaper" >
@@ -318,6 +355,31 @@ function Signup(){
 
 function Login(){
   const classes = useStyles();
+
+  const [user, setUser] = useState('')
+  const [mail, setMail] = useState('')
+  const [password,setPassword] = useState('')
+  const [emailError, setEmailError]=useState('');
+  const [PasswordError, setPasswordError] = useState('');
+  const [hasAccount,, setHasAccount] = useState(false);
+
+  const handleLogin = () =>{
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(mail, password)
+      .catch((err)=>{
+        switch(err.code){
+          case "auth/invalid-email":
+          case "auth/user-disabled":
+          case "auth/user-not-found":
+          setEmailError(err.message);
+          break;
+          case"auth/wrong-password":
+          setPasswordError(err.message);
+          break;
+        }
+      });
+    }
   return(
   <Grid id="main" >
   <Paper elevation={20} className={classes.root} id="mainPaper" >
