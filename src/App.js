@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
 
 const routes = [
   {
-    path: "/",
+    path: "/todo",
     exact: true,
     sidebar: () => <div>
             <List>
