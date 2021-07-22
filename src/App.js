@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import {Grid, 
   Paper,
@@ -357,7 +357,7 @@ function Login(){
            var errorCode = error.code;
            var errorMessage = error.message;
            console.log(error.message) });}}>
-                SIGN UP
+                SIGN IN
               </Button>
             </form>
             <Grid container>
@@ -385,6 +385,8 @@ function Login(){
 }
 
 function Todo(){
+
+return(
 <div style={{ display: "flex" }}>
       <div
         style={{
@@ -432,6 +434,6 @@ function Todo(){
       
     </div>
        
-    </div>
+    </div>)
 }
 
