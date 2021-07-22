@@ -208,7 +208,7 @@ export default function App() {
   return (
     <Router>
         <Switch>
-          <Route path="/Signup">
+          <Route path="/todo">
             <todo />
           </Route>
           <Route path="/Login">
