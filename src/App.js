@@ -290,6 +290,7 @@ function Signup(){
     const authListener = () =>{
       firebase.auth().onAuthStateChanged(user =>{
         if(user){
+          clearInputs()
           setUser(user)
         }else{
           setUser("")
@@ -415,6 +416,7 @@ function Login(){
     const authListener = () =>{
       firebase.auth().onAuthStateChanged(user =>{
         if(user){
+          clearInputs()
           setUser(user)
         }else{
           setUser("")
@@ -425,7 +427,7 @@ function Login(){
   useEffect(() => {
     authListener();
     },[])
-    
+
   return(
   <Grid id="main" >
   <Paper elevation={20} className={classes.root} id="mainPaper" >
