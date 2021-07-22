@@ -6,15 +6,27 @@ import {Grid,
 TextField,
 Button,
  Checkbox,
+ List,
 }from '@material-ui/core';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+import WbSunnyRoundedIcon from '@material-ui/icons/WbSunnyRounded';
+import AssignmentTurnedInRoundedIcon from '@material-ui/icons/AssignmentTurnedInRounded';
+import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
+import EventRoundedIcon from '@material-ui/icons/EventRounded';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import Divider from '@material-ui/core/Divider';
+import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
+import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore"
@@ -64,15 +76,140 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 30,
   },
 
+  todoBackground:{
+    backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")",
+    display: 'flex',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+
+},
+
 }));
+
+
+const routes = [
+  {
+    path: "/",
+    exact: true,
+    sidebar: () => <div>
+            <List>
+            <Link href='#'>
+            <AddRoundedIcon fontSize="small"/>
+              <ListItemText primary="New List" />
+            </Link>
+      </List>
+    </div>,
+    main: () => (
+    <div style={{backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")", display: 'flex',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    display: 'flex',
+    justifyContent: 'space-around',
+    overflow: 'hidden', height:630}}>
+    <h2>My Day</h2>
+    </div>
+    )
+  },
+  {
+    path: "/Important",
+    sidebar: () => <div>
+            <List>
+            <Link href='#'>
+            <AddRoundedIcon fontSize="small"/>
+              <ListItemText primary="New List" />
+            </Link>
+      </List>
+    </div>,
+    main: () => (
+      <div style={{backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")", display: 'flex',
+      justifyContent: 'space-around',
+      overflow: 'hidden',
+      display: 'flex',
+      justifyContent: 'space-around',
+      overflow: 'hidden', height:630}}>
+      <h2>Important</h2>
+      </div>
+      )
+  },
+  {
+    path: "/planned",
+    sidebar: () => <div>      
+      <List>
+      <Link href='#'>
+    <AddRoundedIcon fontSize="small"/>
+      <ListItemText primary="New List" />
+    </Link>
+</List>
+</div>,
+    main: () => (
+      <div style={{backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")", display: 'flex',
+      justifyContent: 'space-around',
+      overflow: 'hidden',
+      display: 'flex',
+      justifyContent: 'space-around',
+      overflow: 'hidden', height:630}}>
+      <h2>Planned</h2>
+      </div>
+      )
+  },
+  {
+  path: "/assigned",
+  sidebar: () => <div>      
+    <List>
+    <Link href='#'>
+  <AddRoundedIcon fontSize="small"/>
+    <ListItemText primary="New List" />
+  </Link>
+</List>
+</div>,
+  main: () => (
+    <div style={{backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")", display: 'flex',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    display: 'flex',
+    justifyContent: 'space-around',
+    overflow: 'hidden', height:630}}>
+    <h2>Assigned To You</h2>
+    </div>
+    )
+},
+{
+  path: "/task",
+  sidebar: () => <div>      
+    <List>
+    <Link href='#'>
+  <AddRoundedIcon fontSize="small"/>
+    <ListItemText primary="New List" />
+  </Link>
+</List>
+</div>,
+  main: () => (
+    <div style={{backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")", display: 'flex',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    display: 'flex',
+    justifyContent: 'space-around',
+    overflow: 'hidden', height:630}}>
+    <h2>Task</h2>
+    </div>
+    )
+},
+];
+
+
 
 export default function App() {
   const classes = useStyles();
+
+  let history = useHistory();
+  const goToPreviousPath = () => {
+      history.goBack()
+  }
   return (
-    <Router> 
-      <Switch>
+    <Router>
+        <Switch>
           <Route path="/Signup">
-            <Signup />
+            <todo />
           </Route>
           <Route path="/Login">
             <Login />
@@ -80,8 +217,33 @@ export default function App() {
           <Route path="/">
             <Signup />
           </Route>
-      </Switch>
-    </Router>
+        </Switch>
+        <Switch>
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              children={<route.sidebar />}
+            />
+          ))}
+        </Switch>
+
+      <div style={{ flex: 1, padding: "10px" }}>
+        <Switch>
+          {routes.map((route, index) => (
+            // Render more <Route>s with the same paths as
+            // above, but different components this time.
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              children={<route.main />}
+            />
+          ))}
+        </Switch>
+      </div>
+  </Router>
   );
 }
 
@@ -222,3 +384,55 @@ function Login(){
 </Paper>
 </Grid>)
 }
+
+function Todo(){
+<div style={{ display: "flex" }}>
+      <div
+        style={{
+          paddingTop: "4px",
+          width: "20%",
+          background: "#f0f0f0"
+        }}
+      >
+        
+          <Link onClick={() => {goToPreviousPath}}><ArrowBackRoundedIcon  fontSize="small"/></Link>
+
+        <TextField variant="outlined" margin="normal" fullWidth id="seach" placeholder="Search" name="Search" placeholderColor="#FFFFFF" padding={44} radius={8} backgroundColor="#FFFFFF" label="Search" />
+
+        <List >
+          <ListItem>
+            <WbSunnyRoundedIcon fontSize="small"/>
+            <Link to="/"> <ListItemText primary="MyDay"/></Link>
+          </ListItem>
+         
+          <ListItem>
+             <StarBorderRoundedIcon fontSize="small"/>  
+            <Link to="/important"> <ListItemText primary="Important"/></Link>
+            </ListItem>
+
+          <ListItem>
+            <EventRoundedIcon  fontSize="small"/>
+            <Link to="/planned">
+              <ListItemText primary="Planned" />
+            </Link>
+            </ListItem>
+        </List>
+      <ListItem>
+            <PermIdentityIcon fontSize="small"/>
+            <Link to="/assigned">
+              <ListItemText primary="Assigned To You" />
+            </Link>
+      </ListItem>
+      <ListItem>
+            <AssignmentTurnedInRoundedIcon fontSize="small"/>
+            <Link to="/task">
+              <ListItemText primary="Task" />
+            </Link>
+      </ListItem>
+      <Divider />
+      
+    </div>
+       
+    </div>
+}
+
