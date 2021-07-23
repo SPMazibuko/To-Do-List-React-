@@ -221,7 +221,7 @@ export default function App() {
     clearErrors();
     firebase
       .auth()
-      .createUserWithEmailAndPassword(mail, password)
+      .createUserWithEmailAndPassword(email, password)
       .catch((err)=>{
         switch(err.code){
           case "auth/email-already-in-use":
@@ -260,16 +260,21 @@ export default function App() {
   return (
     <Router>
         <Switch>
-       {
-         user?(<Route path="/todo">
-         <Todo />
-       </Route>):(<Route path="/">
-         <Signup />
-         </Route>)}
-          <Route path="/Login">
+          if(user ==== true){
+              <Route path="/todolist">
+              <ToDoList />
+              </Route>
+          }else{
+            <Route exact path="/">
+            <Signup />
+          </Route>
+          }
+          <Route path="/login">
             <Login />
           </Route>
-        
+          
+        </Switch>
+        <Switch>
           {routes.map((route, index) => (
             <Route
               key={index}
@@ -531,7 +536,7 @@ function Login(){
 </Grid>)
 }
 
-function Todo(){
+function ToDoList() {
   
 return(
 <div style={{ display: "flex" }}>
