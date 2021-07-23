@@ -444,7 +444,7 @@ function Login(){
     clearErrors();
     firebase
       .auth()
-      .signInWithEmailAndPassword(mail, password)
+      .signInWithEmailAndPassword(email, password)
       .catch((err)=>{
         switch(err.code){
           case "auth/invalid-email":
