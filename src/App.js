@@ -197,8 +197,63 @@ const routes = [
 ];
 
 export default function App() {
+
   const classes = useStyles();
 
+  const [user, setUser] = useState('')
+  const [email, setEmail] = useState('')
+  const [password,setPassword] = useState('')
+  const [emailError, setEmailError]=useState('');
+  const [PasswordError, setPasswordError] = useState('');
+  const [hasAccount,, setHasAccount] = useState(false);
+
+  const clearInputs=()=>{
+    setEmail('');
+    setPassword('');
+    }
+
+  const clearErrors=()=>{
+    setEmailError('');
+    setPasswordError('');
+  }
+
+  const handleSignUp = () =>{
+    clearErrors();
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(mail, password)
+      .catch((err)=>{
+        switch(err.code){
+          case "auth/email-already-in-use":
+          case "auth/invalid-email":
+          setEmailError(err.message);
+          break;
+          case"auth/weak-password":
+          setPasswordError(err.message);
+          break;
+        }
+      });
+    }
+
+    const handleLogOut = () =>{
+      firebase.auth().signOut();
+     
+    }
+
+    const authListener = () =>{
+      firebase.auth().onAuthStateChanged(user =>{
+        if(user){
+          clearInputs()
+          setUser(user)
+        }else{
+          setUser("")
+        }
+      })
+    }
+     
+  useEffect(() => {
+    authListener();
+    },[])
   let history = useHistory();
   const goToPreviousPath = () => {
       history.goBack()
@@ -206,17 +261,16 @@ export default function App() {
   return (
     <Router>
         <Switch>
-          <Route path="/todo">
-            <todo />
-          </Route>
+       {
+         <>{user?(<Route path="/todo">
+         <todo />
+       </Route>):(<Route path="/">
+         <Signup />
+         </Route>)}
           <Route path="/Login">
             <Login />
           </Route>
-          <Route path="/">
-            <Signup />
-          </Route>
-        </Switch>
-        <Switch>
+        
           {routes.map((route, index) => (
             <Route
               key={index}
@@ -224,7 +278,8 @@ export default function App() {
               exact={route.exact}
               children={<route.sidebar />}
             />
-          ))}
+          ))}</> }
+          
         </Switch>
 
       <div style={{ flex: 1, padding: "10px" }}>
@@ -247,6 +302,7 @@ export default function App() {
 
 function Signup(){
   const classes = useStyles();
+  let history = useHistory();
   const [user, setUser] = useState('')
   const [email, setEmail] = useState('')
   const [password,setPassword] = useState('')
@@ -332,7 +388,7 @@ function Signup(){
               <FormControlLabel control={<Checkbox name="checkedB" color="primary" fullWidth variant="contained"/>} label="Accept Terms & Conditions" />
  
               <Button type='submit' color="primary" variant="contained" className={classes.button} startIcon={<ExitToAppRoundedIcon />} fullWidth 
-              onClick={handleSignUp}>
+              onClick={handleSignUp} onClick={() => {history.push("/Main");}}>
                 SIGN UP
               </Button>
             </form>
