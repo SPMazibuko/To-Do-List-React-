@@ -379,16 +379,18 @@ function Signup(){
             <form>
               <TextField variant="outlined" margin="normal" required fullWidth id="nm" placeholder="Enter Your Name" name="nm" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Name:" />
 
-              <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Email Address:" onChange={event => setMail(event.target.value)}/>
+              <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Email Address:" value={email} onChange={(e) => setEmail(e.target.value)}/>
+              <p className="errorMsg">{emailError}</p>
 
-              <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Create Password" type="password" id="password" onChange={event => setPassword(event.target.value)}/>
+              <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Create Password" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <p className="errorMsg">{PasswordError}</p>
 
               <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Confirm Password" type="password" id="password" />
 
               <FormControlLabel control={<Checkbox name="checkedB" color="primary" fullWidth variant="contained"/>} label="Accept Terms & Conditions" />
  
               <Button type='submit' color="primary" variant="contained" className={classes.button} startIcon={<ExitToAppRoundedIcon />} fullWidth 
-              onClick={handleSignUp} onClick={() => {history.push("/Main");}}>
+              onClick={handleSignUp}>
                 SIGN UP
               </Button>
             </form>
