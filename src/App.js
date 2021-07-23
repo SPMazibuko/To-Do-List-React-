@@ -260,15 +260,14 @@ export default function App() {
   return (
     <Router>
         <Switch>
-          if(user ==== true){
-              <Route path="/todolist">
+          <Route path="/todolist">
               <ToDoList />
               </Route>
-          }else{
-            <Route exact path="/">
+              
+              <Route exact path="/">
             <Signup />
           </Route>
-          }
+          
           <Route path="/login">
             <Login />
           </Route>
