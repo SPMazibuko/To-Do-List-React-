@@ -243,7 +243,6 @@ export default function App() {
     const authListener = () =>{
       firebase.auth().onAuthStateChanged(user =>{
         if(user){
-          clearInputs()
           setUser(user)
         }else{
           setUser("")
