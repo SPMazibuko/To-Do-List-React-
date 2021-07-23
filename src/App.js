@@ -232,7 +232,8 @@ export default function App() {
           setPasswordError(err.message);
           break;
         }
-      });
+      })
+      .then(userformSwitch);
     }
 
     const handleLogOut = () =>{
@@ -249,6 +250,7 @@ export default function App() {
         }
       })
     }
+
      
   useEffect(() => {
     authListener();
@@ -267,7 +269,7 @@ export default function App() {
               <Route exact path="/">
             <Signup />
           </Route>
-          
+
           <Route path="/login">
             <Login />
           </Route>
