@@ -207,11 +207,6 @@ export default function App() {
   const [PasswordError, setPasswordError] = useState('');
   const [hasAccount,, setHasAccount] = useState(false);
 
-  const clearInputs=()=>{
-    setEmail('');
-    setPassword('');
-    }
-
   const clearErrors=()=>{
     setEmailError('');
     setPasswordError('');
@@ -232,8 +227,7 @@ export default function App() {
           setPasswordError(err.message);
           break;
         }
-      })
-      .then(userformSwitch);
+      });
     }
 
     const handleLogOut = () =>{
