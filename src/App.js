@@ -261,8 +261,8 @@ export default function App() {
     <Router>
         <Switch>
        {
-         <>{user?(<Route path="/todo">
-         <todo />
+         user?(<Route path="/todo">
+         <Todo />
        </Route>):(<Route path="/">
          <Signup />
          </Route>)}
@@ -277,7 +277,7 @@ export default function App() {
               exact={route.exact}
               children={<route.sidebar />}
             />
-          ))}</> }
+          ))}
           
         </Switch>
 
@@ -323,7 +323,7 @@ function Signup(){
     clearErrors();
     firebase
       .auth()
-      .createUserWithEmailAndPassword(mail, password)
+      .createUserWithEmailAndPassword(email, password)
       .catch((err)=>{
         switch(err.code){
           case "auth/email-already-in-use":
@@ -376,7 +376,7 @@ function Signup(){
 
           
             <form>
-              <TextField variant="outlined" margin="normal" required fullWidth id="nm" placeholder="Enter Your Name" name="nm" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Name:" />
+              <TextField variant="outlined" margin="normal" required fullWidth id="nm" placeholder="Enter Your Name" name="name" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} label="Name:" />
 
               <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" placeholderColor="rgb(170, 170, 170)" padding={44} radius={8} backgroundColor="rgb(245, 245, 245)" label="Email Address:" value={email} onChange={(e) => setEmail(e.target.value)}/>
               <p className="errorMsg">{emailError}</p>
