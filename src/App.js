@@ -198,42 +198,7 @@ const routes = [
 
 export default function App() {
 
-  const classes = useStyles();
-
   const [user, setUser] = useState('')
-  const [email, setEmail] = useState('')
-  const [password,setPassword] = useState('')
-  const [emailError, setEmailError]=useState('');
-  const [PasswordError, setPasswordError] = useState('');
-  const [hasAccount,, setHasAccount] = useState(false);
-
-  const clearErrors=()=>{
-    setEmailError('');
-    setPasswordError('');
-  }
-
-  const handleSignUp = () =>{
-    clearErrors();
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .catch((err)=>{
-        switch(err.code){
-          case "auth/email-already-in-use":
-          case "auth/invalid-email":
-          setEmailError(err.message);
-          break;
-          case"auth/weak-password":
-          setPasswordError(err.message);
-          break;
-        }
-      });
-    }
-
-    const handleLogOut = () =>{
-      firebase.auth().signOut();
-      
-    }
 
     const authListener = () =>{
       firebase.auth().onAuthStateChanged(user =>{
@@ -249,10 +214,7 @@ export default function App() {
   useEffect(() => {
     authListener();
     },[])
-  const history = useHistory();
-  const goToPreviousPath = () => {
-      history.goBack()
-  }
+  
   return (
     <Router>
         <Switch>
@@ -307,7 +269,7 @@ function Signup(){
   const [password,setPassword] = useState('')
   const [emailError, setEmailError]=useState('');
   const [PasswordError, setPasswordError] = useState('');
-  const [hasAccount, setHasAccount] = useState(false);
+
   const history = useHistory()
 
   const clearInputs=()=>{
@@ -337,11 +299,6 @@ function Signup(){
         }
       })
       .then(history.push("/todolist"));
-    }
-
-    const handleLogOut = () =>{
-      firebase.auth().signOut();
-     
     }
 
     const authListener = () =>{
@@ -383,7 +340,7 @@ function Signup(){
               <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" padding={44} radius={8}  label="Email Address:" value={email} onChange={(e) => setEmail(e.target.value)}/>
               <p className="errorMsg">{emailError}</p>
 
-              <TextField variant="outlined" margin="normal" required fullWidth name="password" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <TextField variant="outlined" margin="normal" required fullWidth name="password" type="password" placeholder="Create Password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
               <p className="errorMsg">{PasswordError}</p>
 
               <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Confirm Password" type="password" id="password" />
@@ -456,11 +413,6 @@ function Login(){
         }
       })
       .then(history.push("/todolist"));
-    }
-
-    const handleLogOut = () =>{
-      firebase.auth().signOut();
-     
     }
 
     const authListener = () =>{
@@ -537,6 +489,12 @@ function Login(){
 }
 
 function ToDoList() {
+
+  const history = useHistory();
+  const handleLogOut = () =>{
+    firebase.auth().signOut();
+    history.push("/")
+  }
   
 return(
 <div style={{ display: "flex" }}>
@@ -548,7 +506,7 @@ return(
         }}
       >
         
-          <Link onClick={() => {goToPreviousPath}}><ArrowBackRoundedIcon  fontSize="small"/></Link>
+          <Link onClick={() => {handleLogOut}}><ArrowBackRoundedIcon  fontSize="small"/></Link>
 
         <TextField variant="outlined" margin="normal" fullWidth id="seach" placeholder="Search" name="Search" placeholderColor="#FFFFFF" padding={44} radius={8} backgroundColor="#FFFFFF" label="Search" />
 
