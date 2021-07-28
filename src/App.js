@@ -416,14 +416,24 @@ const routes = [
     main: () => <h2>My Day</h2>
   },
   {
-    path: "/bubblegum",
+    path: "/important",
     sidebar: () => <div>.</div>,
-    main: () => <h2>Bubblegum</h2>
+    main: () => <h2>Important</h2>
   },
   {
-    path: "/shoelaces",
+    path: "/planned",
     sidebar: () => <div>.</div>,
-    main: () => <h2>Shoelaces</h2>
+    main: () => <h2>Planned</h2>
+  },
+  {
+    path: "/assigned",
+    sidebar: () => <div>.</div>,
+    main: () => <h2>Assigned To You</h2>
+  },
+  {
+    path: "/task",
+    sidebar: () => <div>.</div>,
+    main: () => <h2>Task</h2>
   }
 ];
 
@@ -444,16 +454,29 @@ function ToDoList() {
           <TextField variant="outlined" margin="normal" fullWidth id="seach" placeholder="Search" name="Search" placeholderColor="#FFFFFF" padding={44} radius={8} backgroundColor="#FFFFFF" label="Search" />
 
           <List  style={{ listStyleType: "none", padding: 0 }}>
-            <li>
-              <Link to="/myday">My Day</Link>
-            </li>
-            <li>
-              <Link to="/bubblegum">Bubblegum</Link>
-            </li>
-            <li>
-              <Link to="/shoelaces">Shoelaces</Link>
-            </li>
+          <ListItem>
+              <WbSunnyRoundedIcon fontSize="small" />
+              <Link to="/myday"> <ListItemText primary="MyDay"/></Link>
+          </ListItem>
+          <ListItem>
+            <StarBorderRoundedIcon fontSize="small"/>  
+            <Link to="/important"> <ListItemText primary="Important"/></Link>
+          </ListItem>
+          <ListItem>
+            <EventRoundedIcon  fontSize="small"/>
+            <Link to="/planned"> <ListItemText primary="Planned" /> </Link>
+          </ListItem>
+          <ListItem>
+            <PermIdentityIcon fontSize="small"/>
+            <Link to="/assigned">
+              <ListItemText primary="Assigned To You" /></Link>
+          </ListItem>
+         <ListItem>
+            <AssignmentTurnedInRoundedIcon fontSize="small"/>
+            <Link to="/task"><ListItemText primary="Task" /></Link>
+          </ListItem>
           </List>
+          <Divider />
           <Typography style={{color: 'black', marginTop: '230px',marginRight: '0px', marginLeft: '10px', textDecoration:"none" }} >
 <Link  to="/Main" style={{color: '#01579b', marginTop: '720px',marginRight: '60px', marginLeft: '30px', textDecoration:"none" }} > Add new list <i style={{color: '#01579b'}} class="fa fa-plus" aria-hidden="true"></i></Link></Typography  >
           <Switch>
