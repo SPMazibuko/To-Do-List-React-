@@ -87,114 +87,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const routes = [
-  {
-    path: "/myday",
-    exact: true,
-    sidebar: () => <div>
-            <List>
-            <Link href='#'>
-            <AddRoundedIcon fontSize="small"/>
-              <ListItemText primary="New List" />
-            </Link>
-      </List>
-    </div>,
-    main: () => (
-    <div style={{backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")", display: 'flex',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    display: 'flex',
-    justifyContent: 'space-around',
-    overflow: 'hidden', height:630}}>
-    <h2>My Day</h2>
-    </div>
-    )
-  },
-  {
-    path: "/Important",
-    sidebar: () => <div>
-            <List>
-            <Link href='#'>
-            <AddRoundedIcon fontSize="small"/>
-              <ListItemText primary="New List" />
-            </Link>
-      </List>
-    </div>,
-    main: () => (
-      <div style={{backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")", display: 'flex',
-      justifyContent: 'space-around',
-      overflow: 'hidden',
-      display: 'flex',
-      justifyContent: 'space-around',
-      overflow: 'hidden', height:630}}>
-      <h2>Important</h2>
-      </div>
-      )
-  },
-  {
-    path: "/planned",
-    sidebar: () => <div>      
-      <List>
-      <Link href='#'>
-    <AddRoundedIcon fontSize="small"/>
-      <ListItemText primary="New List" />
-    </Link>
-</List>
-</div>,
-    main: () => (
-      <div style={{backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")", display: 'flex',
-      justifyContent: 'space-around',
-      overflow: 'hidden',
-      display: 'flex',
-      justifyContent: 'space-around',
-      overflow: 'hidden', height:630}}>
-      <h2>Planned</h2>
-      </div>
-      )
-  },
-  {
-  path: "/assigned",
-  sidebar: () => <div>      
-    <List>
-    <Link href='#'>
-  <AddRoundedIcon fontSize="small"/>
-    <ListItemText primary="New List" />
-  </Link>
-</List>
-</div>,
-  main: () => (
-    <div style={{backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")", display: 'flex',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    display: 'flex',
-    justifyContent: 'space-around',
-    overflow: 'hidden', height:630}}>
-    <h2>Assigned To You</h2>
-    </div>
-    )
-},
-{
-  path: "/task",
-  sidebar: () => <div>      
-    <List>
-    <Link href='#'>
-  <AddRoundedIcon fontSize="small"/>
-    <ListItemText primary="New List" />
-  </Link>
-</List>
-</div>,
-  main: () => (
-    <div style={{backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")", display: 'flex',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    display: 'flex',
-    justifyContent: 'space-around',
-    overflow: 'hidden', height:630}}>
-    <h2>Task</h2>
-    </div>
-    )
-},
-];
+//=============================================================Main App Function =================================
 
 export default function App() {
 
@@ -231,17 +124,6 @@ export default function App() {
           </Route>
           
         </Switch>
-        <Switch>
-          {routes.map((route, index) => (
-            <Route
-              key={index}
-              path={route.path}
-              exact={route.exact}
-              children={<route.sidebar />}
-            />
-          ))}
-          
-        </Switch>
 
       <div style={{ flex: 1, padding: "10px" }}>
         <Switch>
@@ -257,9 +139,41 @@ export default function App() {
           ))}
         </Switch>
       </div>
+      <div style={{ display: "flex" }}>
+        <div>
+          <Switch>
+            {routes.map((route, index) => (
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                children={<route.sidebar />}
+              />
+            ))}
+          </Switch>
+        </div>
+
+        <div style={{ flex: 1, padding: "10px" }}>
+          <Switch>
+            {routes.map((route, index) => (
+              // Render more <Route>s with the same paths as
+              // above, but different components this time.
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                children={<route.main />}
+              />
+            ))}
+          </Switch>
+        </div>
+      </div>
   </Router>
   );
 }
+
+
+//============================================ Signup Function ==================================
 
 function Signup(){
   const classes = useStyles();
@@ -373,6 +287,9 @@ function Signup(){
 </Grid>)
   
 }
+
+
+//================================================== Login Function =======================================
 
 function Login(){
   const classes = useStyles();
@@ -488,62 +405,92 @@ function Login(){
 </Grid>)
 }
 
+
+//=================================================== TodoList Function =======================================
+
+const routes = [
+  {
+    path: "/myday",
+    exact: true,
+    sidebar: () => <div>.</div>,
+    main: () => <h2>My Day</h2>
+  },
+  {
+    path: "/bubblegum",
+    sidebar: () => <div>.</div>,
+    main: () => <h2>Bubblegum</h2>
+  },
+  {
+    path: "/shoelaces",
+    sidebar: () => <div>.</div>,
+    main: () => <h2>Shoelaces</h2>
+  }
+];
+
 function ToDoList() {
 
-  const history = useHistory();
-  const handleLogOut = () =>{
-    firebase.auth().signOut();
-    history.push("/")
-  }
-  
-return(
-<div style={{ display: "flex" }}>
-      <div
-        style={{
-          paddingTop: "4px",
-          width: "20%",
-          background: "#f0f0f0"
-        }}
-      >
-        
-          <Link onClick={() => {handleLogOut}}><ArrowBackRoundedIcon  fontSize="small"/></Link>
+  return (
+    <Router>
 
-        <TextField variant="outlined" margin="normal" fullWidth id="seach" placeholder="Search" name="Search" placeholderColor="#FFFFFF" padding={44} radius={8} backgroundColor="#FFFFFF" label="Search" />
+<Link onClick={() => {}}><ArrowBackRoundedIcon  fontSize="small"/></Link>
+      <div style={{ display: "flex" }}>
+        <div
+          style={{
+            padding: "10px",
+            width: "40%",
+            background: "#f0f0f0"
+          }}
+        >
+          <TextField variant="outlined" margin="normal" fullWidth id="seach" placeholder="Search" name="Search" placeholderColor="#FFFFFF" padding={44} radius={8} backgroundColor="#FFFFFF" label="Search" />
 
-        <List >
-          <ListItem>
-            <WbSunnyRoundedIcon fontSize="small"/>
-            <Link to="/"> <ListItemText primary="MyDay"/></Link>
-          </ListItem>
-         
-          <ListItem>
-             <StarBorderRoundedIcon fontSize="small"/>  
-            <Link to="/important"> <ListItemText primary="Important"/></Link>
-            </ListItem>
+          <List  style={{ listStyleType: "none", padding: 0 }}>
+            <li>
+              <Link to="/myday">My Day</Link>
+            </li>
+            <li>
+              <Link to="/bubblegum">Bubblegum</Link>
+            </li>
+            <li>
+              <Link to="/shoelaces">Shoelaces</Link>
+            </li>
+          </List>
+          <Typography style={{color: 'black', marginTop: '230px',marginRight: '0px', marginLeft: '10px', textDecoration:"none" }} >
+<Link  to="/Main" style={{color: '#01579b', marginTop: '720px',marginRight: '60px', marginLeft: '30px', textDecoration:"none" }} > Add new list <i style={{color: '#01579b'}} class="fa fa-plus" aria-hidden="true"></i></Link></Typography  >
+          <Switch>
+            {routes.map((route, index) => (
+              // You can render a <Route> in as many places
+              // as you want in your app. It will render along
+              // with any other <Route>s that also match the URL.
+              // So, a sidebar or breadcrumbs or anything else
+              // that requires you to render multiple things
+              // in multiple places at the same URL is nothing
+              // more than multiple <Route>s.
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                children={<route.sidebar />}
+              />
+            ))}
+          </Switch>
+        </div>
 
-          <ListItem>
-            <EventRoundedIcon  fontSize="small"/>
-            <Link to="/planned">
-              <ListItemText primary="Planned" />
-            </Link>
-            </ListItem>
-        </List>
-      <ListItem>
-            <PermIdentityIcon fontSize="small"/>
-            <Link to="/assigned">
-              <ListItemText primary="Assigned To You" />
-            </Link>
-      </ListItem>
-      <ListItem>
-            <AssignmentTurnedInRoundedIcon fontSize="small"/>
-            <Link to="/task">
-              <ListItemText primary="Task" />
-            </Link>
-      </ListItem>
-      <Divider />
-      
-    </div>
-       
-    </div>)
+        <div style={{ flex: 1, padding: "10px" }}>
+          <Switch>
+            {routes.map((route, index) => (
+              // Render more <Route>s with the same paths as
+              // above, but different components this time.
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                children={<route.main />}
+              />
+            ))}
+          </Switch>
+        </div>
+      </div>
+    </Router>
+  );
 }
 
