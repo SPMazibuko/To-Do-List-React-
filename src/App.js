@@ -419,10 +419,10 @@ function Login(){
 function Todo({ todo, index, markTodo, removeTodo }) {
   return (
     <div
-      className="todo"
+      className="todo" style={{ display: 'flex' }}
       
     >
-      <span style={{ textDecoration: todo.isDone ? "line-through" : "", display: 'flex'}}>{todo.text}</span>
+      <span style={{ textDecoration: todo.isDone ? "line-through" : ""}}>{todo.text}</span>
       <div>
         <Button color="default" variant="contained"  startIcon={<DoneRoundedIcon/>} onClick={() => markTodo(index)}>Complete</Button>{'  '}
         <Button color="secondary" variant="contained" startIcon={<DeleteForeverRoundedIcon />} onClick={() => removeTodo(index)}>Delete</Button>
