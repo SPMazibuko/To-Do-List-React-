@@ -20,6 +20,19 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import Divider from '@material-ui/core/Divider';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+
+
+import React from "react";
+import { Button, Card, Form } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -408,32 +421,339 @@ function Login(){
 
 //=================================================== TodoList Function =======================================
 
+function Todo({ todo, index, markTodo, removeTodo }) {
+  return (
+    <div
+      className="todo"
+      
+    >
+      <span style={{ textDecoration: todo.isDone ? "line-through" : "" }}>{todo.text}</span>
+      <div>
+        <Button variant="outline-success" onClick={() => markTodo(index)}>Complete</Button>{' '}
+        <Button variant="outline-danger" onClick={() => removeTodo(index)}>Delete</Button>
+      </div>
+    </div>
+  );
+}
+
+function FormTodo({ addTodo }) {
+  const [value, setValue] = React.useState("");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!value) return;
+    addTodo(value);
+    setValue("");
+  };
+
+  return (
+    <Form onSubmit={handleSubmit}> 
+    <Form.Group>
+      <Form.Control type="text" className="" value={value} onChange={e => setValue(e.target.value)} placeholder="Add new todo" />
+    </Form.Group>
+    <Button variant="primary mb-3" type="submit">
+      Submit
+    </Button>
+  </Form>
+  );
+}
+
+
+function MyDay(){
+  const [todos, setTodos] = React.useState([
+    {
+      text: "",
+      isDone: false
+    }
+  ]);
+
+  const addTodo = text => {
+    const newTodos = [...todos, { text }];
+    setTodos(newTodos);
+  };
+
+  const markTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].isDone = true;
+    setTodos(newTodos);
+  };
+
+  const removeTodo = index => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
+
+  return (
+    <div className="app">
+      <div className="container">
+        <FormTodo addTodo={addTodo} />
+        <div>
+          {todos.map((todo, index) => (
+            <Card>
+              <CardContent>
+                <Todo
+                key={index}
+                index={index}
+                todo={todo}
+                markTodo={markTodo}
+                removeTodo={removeTodo}
+                />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Important(){
+  const [todos, setTodos] = React.useState([
+    {
+      text: "",
+      isDone: false
+    }
+  ]);
+
+  const addTodo = text => {
+    const newTodos = [...todos, { text }];
+    setTodos(newTodos);
+  };
+
+  const markTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].isDone = true;
+    setTodos(newTodos);
+  };
+
+  const removeTodo = index => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
+
+  return (
+    <div className="app">
+      <div className="container">
+        <FormTodo addTodo={addTodo} />
+        <div>
+          {todos.map((todo, index) => (
+            <Card>
+              <CardContent>
+                <Todo
+                key={index}
+                index={index}
+                todo={todo}
+                markTodo={markTodo}
+                removeTodo={removeTodo}
+                />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Planned(){
+  const [todos, setTodos] = React.useState([
+    {
+      text: "",
+      isDone: false
+    }
+  ]);
+
+  const addTodo = text => {
+    const newTodos = [...todos, { text }];
+    setTodos(newTodos);
+  };
+
+  const markTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].isDone = true;
+    setTodos(newTodos);
+  };
+
+  const removeTodo = index => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
+
+  return (
+    <div className="app">
+      <div className="container">
+        <FormTodo addTodo={addTodo} />
+        <div>
+          {todos.map((todo, index) => (
+            <Card>
+              <CardContent>
+                <Todo
+                key={index}
+                index={index}
+                todo={todo}
+                markTodo={markTodo}
+                removeTodo={removeTodo}
+                />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Assigned(){
+  const [todos, setTodos] = React.useState([
+    {
+      text: "",
+      isDone: false
+    }
+  ]);
+
+  const addTodo = text => {
+    const newTodos = [...todos, { text }];
+    setTodos(newTodos);
+  };
+
+  const markTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].isDone = true;
+    setTodos(newTodos);
+  };
+
+  const removeTodo = index => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
+
+  return (
+    <div className="app">
+      <div className="container">
+        <FormTodo addTodo={addTodo} />
+        <div>
+          {todos.map((todo, index) => (
+            <Card>
+              <CardContent>
+                <Todo
+                key={index}
+                index={index}
+                todo={todo}
+                markTodo={markTodo}
+                removeTodo={removeTodo}
+                />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Task(){
+  const [todos, setTodos] = React.useState([
+    {
+      text: "",
+      isDone: false
+    }
+  ]);
+
+  const addTodo = text => {
+    const newTodos = [...todos, { text }];
+    setTodos(newTodos);
+  };
+
+  const markTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].isDone = true;
+    setTodos(newTodos);
+  };
+
+  const removeTodo = index => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
+
+  return (
+    <div className="app">
+      <div className="container">
+        <FormTodo addTodo={addTodo} />
+        <div>
+          {todos.map((todo, index) => (
+            <Card>
+              <CardContent>
+                <Todo
+                key={index}
+                index={index}
+                todo={todo}
+                markTodo={markTodo}
+                removeTodo={removeTodo}
+                />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const routes = [
   {
     path: "/myday",
     exact: true,
     sidebar: () => <div>.</div>,
-    main: () => <h2>My Day</h2>
+    main: () =>(
+      <div style={{backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")", display: 'flex',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    display: 'flex',
+    justifyContent: 'space-around',
+    overflow: 'hidden', height:630}}>
+    <h2>My Day</h2>
+      < MyDay />
+    
+    </div>
+    )
   },
   {
     path: "/important",
     sidebar: () => <div>.</div>,
-    main: () => <h2>Important</h2>
+    main: () =>(
+      <div> <h2>Important</h2>
+    < Important />
+    </div>
+    )
   },
   {
     path: "/planned",
     sidebar: () => <div>.</div>,
-    main: () => <h2>Planned</h2>
+    main: () =>(
+      <div> <h2>Planned</h2>
+    < Planned />
+    </div>)
   },
   {
     path: "/assigned",
     sidebar: () => <div>.</div>,
-    main: () => <h2>Assigned To You</h2>
+    main: () => (
+      <div> <h2>Assigned To You</h2>
+      < Assigned />
+      </div>)
   },
   {
     path: "/task",
     sidebar: () => <div>.</div>,
-    main: () => <h2>Task</h2>
+    main: () =>(
+      <div>  <h2>Task</h2>
+      < Task />
+      </div>)
   }
 ];
 
@@ -481,13 +801,6 @@ function ToDoList() {
 <Link  to="/Main" style={{color: '#01579b', marginTop: '720px',marginRight: '60px', marginLeft: '30px', textDecoration:"none" }} > Add new list <i style={{color: '#01579b'}} class="fa fa-plus" aria-hidden="true"></i></Link></Typography  >
           <Switch>
             {routes.map((route, index) => (
-              // You can render a <Route> in as many places
-              // as you want in your app. It will render along
-              // with any other <Route>s that also match the URL.
-              // So, a sidebar or breadcrumbs or anything else
-              // that requires you to render multiple things
-              // in multiple places at the same URL is nothing
-              // more than multiple <Route>s.
               <Route
                 key={index}
                 path={route.path}
@@ -501,8 +814,6 @@ function ToDoList() {
         <div style={{ flex: 1, padding: "10px" }}>
           <Switch>
             {routes.map((route, index) => (
-              // Render more <Route>s with the same paths as
-              // above, but different components this time.
               <Route
                 key={index}
                 path={route.path}
