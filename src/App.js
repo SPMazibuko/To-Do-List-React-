@@ -17,8 +17,11 @@ import AssignmentTurnedInRoundedIcon from '@material-ui/icons/AssignmentTurnedIn
 import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 import EventRoundedIcon from '@material-ui/icons/EventRounded';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
 import Divider from '@material-ui/core/Divider';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
+import DoneRoundedIcon from '@material-ui/icons/DoneRounded';
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -88,14 +91,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     paddingLeft: 30,
   },
-
-  todoBackground:{
-    backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")",
-    display: 'flex',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-
-},
 
 }));
 
@@ -427,10 +422,10 @@ function Todo({ todo, index, markTodo, removeTodo }) {
       className="todo"
       
     >
-      <span style={{ textDecoration: todo.isDone ? "line-through" : "" }}>{todo.text}</span>
+      <span style={{ textDecoration: todo.isDone ? "line-through" : "", display: 'flex'}}>{todo.text}</span>
       <div>
-        <Button variant="outline-success" onClick={() => markTodo(index)}>Complete</Button>{' '}
-        <Button variant="outline-danger" onClick={() => removeTodo(index)}>Delete</Button>
+        <Button color="default" variant="contained"  startIcon={<DoneRoundedIcon/>} onClick={() => markTodo(index)}>Complete</Button>{'  '}
+        <Button color="secondary" variant="contained" startIcon={<DeleteForeverRoundedIcon />} onClick={() => removeTodo(index)}>Delete</Button>
       </div>
     </div>
   );
@@ -447,11 +442,11 @@ function FormTodo({ addTodo }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}> 
+    <Form onSubmit={handleSubmit} style={{marginTop: '500px',marginRight: '60px', marginLeft: '30px', textDecoration:"none",display: 'flex'}}> 
     <Form.Group>
       <Form.Control type="text" className="" value={value} onChange={e => setValue(e.target.value)} placeholder="Add new todo" />
     </Form.Group>
-    <Button variant="primary mb-3" type="submit">
+    <Button type='submit' color="primary" variant="contained" className="" startIcon={<AddCircleOutlineRoundedIcon />} >
       Submit
     </Button>
   </Form>
@@ -485,8 +480,8 @@ function MyDay(){
   };
 
   return (
-    <div className="app">
-      <div className="container">
+    <div className="">
+      <div className="">
         <FormTodo addTodo={addTodo} />
         <div>
           {todos.map((todo, index) => (
