@@ -8,6 +8,7 @@ Button,
  Checkbox,
  List,
 }from '@material-ui/core';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -23,6 +24,10 @@ import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import DoneRoundedIcon from '@material-ui/icons/DoneRounded';
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
+import NotificationsActiveRoundedIcon from '@material-ui/icons/NotificationsActiveRounded';
+import RepeatRoundedIcon from '@material-ui/icons/RepeatRounded';
+import AttachmentRoundedIcon from '@material-ui/icons/AttachmentRounded';
+import ArrowForwardIosTwoToneIcon from '@material-ui/icons/ArrowForwardIosTwoTone';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -30,6 +35,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormGroup from '@material-ui/core/FormGroup';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 
 
 import React from "react";
@@ -625,9 +632,9 @@ function Planned(){
             </Card>
           ))}
         </div>
-        
+        <FormTodo addTodo={addTodo} />
       </div>
-      <FormTodo addTodo={addTodo} />
+      
     </div>
   );
 }
@@ -810,10 +817,10 @@ function ToDoList() {
         >
           <TextField variant="outlined" margin="normal" fullWidth id="seach" placeholder="Search" name="Search" placeholderColor="#FFFFFF" padding={44} radius={8} backgroundColor="#FFFFFF" label="Search" />
 
-          <List  style={{ listStyleType: "none", padding: 0 }}>
+          <List  style={{ listStyleType: "none", padding: 0,color: 'black' }}>
           <ListItem>
               <WbSunnyRoundedIcon fontSize="small" />
-              <Link to="/myday"> <ListItemText primary="MyDay"/></Link>
+              <Link to="/myday"> <ListItemText primary="My Day"/></Link>
           </ListItem>
           <ListItem>
             <StarBorderRoundedIcon fontSize="small"/>  
@@ -875,8 +882,45 @@ function ToDoList() {
           backgroundColor: 'rgba(164, 183, 182, 0.69)',
           overflow: 'visible',
           borderRadius: '0px 10px 0px 10px',
+          padding: '10px'
         }}>
-            
+          <FormControlLabel value="" control={<Radio />} label="Write about time blocking" />
+
+          <List  style={{ listStyleType: "none", padding: 0, color: 'black' }}>
+          <ListItem>
+              <AddRoundedIcon fontSize="small" />
+              <Link to="#"> <ListItemText primary="Add Step"/></Link>
+          </ListItem>
+          <ListItem>
+            <WbSunnyRoundedIcon fontSize="small"/>  
+            <Link to="#"> <ListItemText primary="Add To My Day"/></Link>
+          </ListItem>
+          <ListItem>
+            <NotificationsActiveRoundedIcon  fontSize="small"/>
+            <Link to="#"> <ListItemText primary="Remind Me" /> </Link>
+          </ListItem>
+          <ListItem>
+            <EventRoundedIcon fontSize="small"/>
+            <Link to="#">
+              <ListItemText primary="Add Due Date" /></Link>
+          </ListItem>
+         <ListItem>
+            <RepeatRoundedIcon fontSize="small"/>
+            <Link to="#"><ListItemText primary="Repeat" /></Link>
+          </ListItem>
+          <ListItem>
+            <AttachmentRoundedIcon fontSize="small"/>
+            <Link to="#"><ListItemText primary="Add File" /></Link>
+          </ListItem>
+          <ListItem>
+          <TextareaAutosize aria-label="minimum height" minRows={5} placeholder="Add Note" />
+          </ListItem>
+          </List>
+
+          <Link to="/login"><ArrowForwardIosTwoToneIcon style={{color: 'black', marginTop: '230px',marginRight: '0px', marginLeft: '10px'}}/></Link>
+          <Link to="#"><DeleteForeverRoundedIcon  style={{color: 'black', marginTop: '230px',marginRight: '230px', marginLeft: '47px'}}/></Link>
+          
+
         </div>
       </div>
     </Router>
