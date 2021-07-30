@@ -416,13 +416,14 @@ function Login(){
 
 //=================================================== TodoList Function =======================================
 
+
 function Todo({ todo, index, markTodo, removeTodo }) {
   return (
     <div
-      className="todo" style={{ display: 'flex' }}
+      className="todo" 
       
     >
-      <span style={{ textDecoration: todo.isDone ? "line-through" : ""}}>{todo.text}</span>
+      <span style={{ textDecoration: todo.isDone ? "line-through" : "", padding: '10px'}}>{todo.text}</span>
       <div>
         <Button color="default" variant="contained"  startIcon={<DoneRoundedIcon/>} onClick={() => markTodo(index)}>Complete</Button>{'  '}
         <Button color="secondary" variant="contained" startIcon={<DeleteForeverRoundedIcon />} onClick={() => removeTodo(index)}>Delete</Button>
@@ -442,14 +443,44 @@ function FormTodo({ addTodo }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit} style={{marginTop: '500px',marginRight: '60px', marginLeft: '30px', textDecoration:"none",display: 'flex'}}> 
-    <Form.Group>
+    <div>
+      <Form onSubmit={handleSubmit} 
+        style={{
+          marginTop: '40px',
+          marginRight: '60px',
+          marginLeft: '30px',
+          textDecoration:"none",
+          width: '659px',
+          display: 'flex',
+          flexDirection: 'culumn',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          padding: '10px 38px 39px 38px',
+           backgroundColor: 'rgba(23, 38, 43, 0.3)',
+         overflow: 'visible',
+          borderRadius: '10px'
+      }}> 
+
+      <Form.Group>
       <Form.Control type="text" className="" value={value} onChange={e => setValue(e.target.value)} placeholder="Add new todo" />
-    </Form.Group>
-    <Button type='submit' color="primary" variant="contained" className="" startIcon={<AddCircleOutlineRoundedIcon />} >
-      Submit
-    </Button>
-  </Form>
+        </Form.Group>
+          <Button type='submit' color="primary" variant="contained" className="" startIcon={<AddCircleOutlineRoundedIcon />} >
+          Submit
+          </Button>
+        </Form>
+
+        <div
+        style={{
+          width: '364px',
+          height: '800px',
+          backgroundColor: '#cddee0',
+          overflow: 'visible',
+          borderRadius: '0px 10px 0px 10px',
+        }}
+        >
+
+        </div>
+    </div>
   );
 }
 
@@ -480,9 +511,12 @@ function MyDay(){
   };
 
   return (
-    <div className="">
+    <div className="" style={{height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      borderRadius: '15px'}}>
       <div className="">
-        <FormTodo addTodo={addTodo} />
+
         <div>
           {todos.map((todo, index) => (
             <Card>
@@ -498,6 +532,7 @@ function MyDay(){
             </Card>
           ))}
         </div>
+        <FormTodo addTodo={addTodo} />
       </div>
     </div>
   );
@@ -531,7 +566,7 @@ function Important(){
   return (
     <div className="app">
       <div className="container">
-        <FormTodo addTodo={addTodo} />
+       
         <div>
           {todos.map((todo, index) => (
             <Card>
@@ -547,6 +582,7 @@ function Important(){
             </Card>
           ))}
         </div>
+        <FormTodo addTodo={addTodo} />
       </div>
     </div>
   );
@@ -580,7 +616,7 @@ function Planned(){
   return (
     <div className="app">
       <div className="container">
-        <FormTodo addTodo={addTodo} />
+        
         <div>
           {todos.map((todo, index) => (
             <Card>
@@ -596,6 +632,7 @@ function Planned(){
             </Card>
           ))}
         </div>
+        <FormTodo addTodo={addTodo} />
       </div>
     </div>
   );
@@ -629,7 +666,7 @@ function Assigned(){
   return (
     <div className="app">
       <div className="container">
-        <FormTodo addTodo={addTodo} />
+       
         <div>
           {todos.map((todo, index) => (
             <Card>
@@ -645,6 +682,7 @@ function Assigned(){
             </Card>
           ))}
         </div>
+        <FormTodo addTodo={addTodo} />
       </div>
     </div>
   );
@@ -678,7 +716,7 @@ function Task(){
   return (
     <div className="app">
       <div className="container">
-        <FormTodo addTodo={addTodo} />
+        
         <div>
           {todos.map((todo, index) => (
             <Card>
@@ -694,6 +732,7 @@ function Task(){
             </Card>
           ))}
         </div>
+        <FormTodo addTodo={addTodo} />
       </div>
     </div>
   );
@@ -705,12 +744,7 @@ const routes = [
     exact: true,
     sidebar: () => <div>.</div>,
     main: () =>(
-      <div style={{backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeF-nT6KqkTTZ2yqPpuxQXVQFJX-PQXMEK4Ulf49BcwQrpoxR_4flSbTDvaIYZEHr4lbEfhQSm_4CgcGBrT_Ayh-&_nc_ohc=t_ZtuDGnMtoAX__fq7j&_nc_ht=scontent.fjnb11-1.fna&oh=e42fed7be69a4c8def384a68590102e2&oe=60FDEF25" + ")", display: 'flex',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    display: 'flex',
-    justifyContent: 'space-around',
-    overflow: 'hidden', height:630}}>
+      <div>
     <h2>My Day</h2>
       < MyDay />
     
@@ -758,12 +792,26 @@ function ToDoList() {
     <Router>
 
 <Link onClick={() => {}}><ArrowBackRoundedIcon  fontSize="small"/></Link>
-      <div style={{ display: "flex" }}>
+      <div 
+        style={{ 
+          display: "flex",
+          width: '1376px',
+          height: '800px',
+          boxShadow: '0px 10px 20px 0px rgba(0, 0, 0, 0.05)',
+          overflow: 'hidden',
+          backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_ohc=Mzk5NExrAZEAX_mxea_&_nc_ht=scontent.fjnb11-1.fna&oh=c895bcb3c89cacaa6ae2ea62f0e2bacf&oe=612970A5" + ")",
+           backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+           backgroundPosition: 'center',
+           borderRadius: '20px'
+   }}>
         <div
           style={{
-            padding: "10px",
-            width: "40%",
-            background: "#f0f0f0"
+            width: '298px',
+             height: '800px',
+             backgroundColor: 'rgba(164, 183, 182, 0.69)',
+              overflow: 'hidden',
+             borderRadius: '10px 0px 10px 0px'
           }}
         >
           <TextField variant="outlined" margin="normal" fullWidth id="seach" placeholder="Search" name="Search" placeholderColor="#FFFFFF" padding={44} radius={8} backgroundColor="#FFFFFF" label="Search" />
@@ -793,7 +841,8 @@ function ToDoList() {
           </List>
           <Divider />
           <Typography style={{color: 'black', marginTop: '230px',marginRight: '0px', marginLeft: '10px', textDecoration:"none" }} >
-<Link  to="/Main" style={{color: '#01579b', marginTop: '720px',marginRight: '60px', marginLeft: '30px', textDecoration:"none" }} > Add new list <i style={{color: '#01579b'}} class="fa fa-plus" aria-hidden="true"></i></Link></Typography  >
+<Link  to="/Main" style={{color: '#000000', width: '129px',
+  height: '32px'}} ><AddRoundedIcon /> New List </Link></Typography  >
           <Switch>
             {routes.map((route, index) => (
               <Route
