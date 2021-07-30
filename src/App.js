@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     
   },
   image: {
-    backgroundImage: 'url(https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/218230350_6101479503258632_6092955877124397050_n.jpg?_nc_cat=105&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeEFa4M1tk0O-rvUgNMiEp8YWkTzqeHoTLBaRPOp4ehMsPxFGP31U8vyn4FAcMj3gIC-HQHFOzuBcfQ6Amq0a2C5&_nc_ohc=GCvAhaJeFCsAX_LqbjE&tn=6VvZ5GfI6aYD5Tzn&_nc_ht=scontent.fjnb11-1.fna&oh=e6177222a48f69dfcb3c3c2488cf9dfe&oe=60FD54B2)',
+    backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/218230350_6101479503258632_6092955877124397050_n.jpg?_nc_cat=105&ccb=1-3&_nc_sid=730e14&_nc_ohc=zEKmEY_xh1kAX-g2prU&tn=6VvZ5GfI6aYD5Tzn&_nc_ht=scontent.fjnb11-1.fna&oh=f6986bd9697e9260806d95cbeb05f224&oe=612AD072" + ")",
       width: '700px',
       height: '600px',
       overflow: 'visible',
