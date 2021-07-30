@@ -418,6 +418,7 @@ function Login(){
 
 
 function Todo({ todo, index, markTodo, removeTodo }) {
+
   return (
     <div
       className="todo" 
@@ -433,6 +434,8 @@ function Todo({ todo, index, markTodo, removeTodo }) {
 }
 
 function FormTodo({ addTodo }) {
+
+  const classes = useStyles();
   const [value, setValue] = React.useState("");
 
   const handleSubmit = e => {
@@ -443,7 +446,8 @@ function FormTodo({ addTodo }) {
   };
 
   return (
-    <div>
+ 
+    <div className={classes.root}>
       <Form onSubmit={handleSubmit} 
         style={{
           marginTop: '40px',
@@ -465,22 +469,10 @@ function FormTodo({ addTodo }) {
       <Form.Control type="text" className="" value={value} onChange={e => setValue(e.target.value)} placeholder="Add new todo" />
         </Form.Group>
           <Button type='submit' color="primary" variant="contained" className="" startIcon={<AddCircleOutlineRoundedIcon />} >
-          Submit
+          Add an Item
           </Button>
         </Form>
-
-        <div
-        style={{
-          width: '364px',
-          height: '800px',
-          backgroundColor: '#cddee0',
-          overflow: 'visible',
-          borderRadius: '0px 10px 0px 10px',
-        }}
-        >
-
-        </div>
-    </div>
+     </div>
   );
 }
 
@@ -534,6 +526,7 @@ function MyDay(){
         </div>
         <FormTodo addTodo={addTodo} />
       </div>
+      
     </div>
   );
 }
@@ -632,8 +625,9 @@ function Planned(){
             </Card>
           ))}
         </div>
-        <FormTodo addTodo={addTodo} />
+        
       </div>
+      <FormTodo addTodo={addTodo} />
     </div>
   );
 }
@@ -855,7 +849,14 @@ function ToDoList() {
           </Switch>
         </div>
 
-        <div style={{ flex: 1, padding: "10px" }}>
+        <div
+          style={{
+            width: '750px',
+             height: '800px',
+              overflow: 'hidden',
+             borderRadius: '15px'
+          }}
+        >
           <Switch>
             {routes.map((route, index) => (
               <Route
@@ -866,6 +867,16 @@ function ToDoList() {
               />
             ))}
           </Switch>
+        </div>
+        <div
+        style={{
+          width: '364px',
+          height: '800px',
+          backgroundColor: 'rgba(164, 183, 182, 0.69)',
+          overflow: 'visible',
+          borderRadius: '0px 10px 0px 10px',
+        }}>
+            
         </div>
       </div>
     </Router>
