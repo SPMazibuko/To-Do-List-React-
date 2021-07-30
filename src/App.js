@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import {Grid, 
   Paper,
@@ -198,6 +198,8 @@ function Signup(){
   const [password,setPassword] = useState('')
   const [emailError, setEmailError]=useState('');
   const [PasswordError, setPasswordError] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  
 
   const history = useHistory()
 
@@ -211,24 +213,28 @@ function Signup(){
     setPasswordError('');
   }
 
-  const handleSignUp = () =>{
+  const handleSignUp = (e) =>{
     clearErrors();
+    e.preventDefault()
+    if (password !== confirmPassword)  {
+      return setPasswordError('Passwords do not match')
+      }
     firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .catch((err)=>{
-        switch(err.code){
-          case "auth/email-already-in-use":
-          case "auth/invalid-email":
-          setEmailError(err.message);
-          break;
-          case"auth/weak-password":
-          setPasswordError(err.message);
-          break;
-        }
-      })
-      .then(history.push("/todolist"));
-    }
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+   .catch((err)=>{
+      switch(err.code){
+      case "auth/email-already-in-use":
+      case "auth/invalid-email":
+      setEmailError(err.message);
+      break;
+      case"auth/weak-password":
+      setPasswordError(err.message);
+      break;
+      }
+    })
+  .then(history.push("/todolist"));
+}
 
     const authListener = () =>{
       firebase.auth().onAuthStateChanged(user =>{
@@ -272,7 +278,7 @@ function Signup(){
               <TextField variant="outlined" margin="normal" required fullWidth name="password" type="password" placeholder="Create Password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
               <p className="errorMsg">{PasswordError}</p>
 
-              <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Confirm Password" type="password" id="password" />
+              <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Confirm Password" type="password" id="password" onChange={(e) => setConfirmPassword(e.target.value)} />
 
               <FormControlLabel control={<Checkbox name="checkedB" color="primary" fullWidth variant="contained"/>} label="Accept Terms & Conditions" />
  
