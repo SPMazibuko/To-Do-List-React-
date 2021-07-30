@@ -333,11 +333,17 @@ function Login(){
     setPasswordError('');
   }
 
-  const handleLogin = () =>{
+  const handleLogin = (e) =>{
     clearErrors();
+    e.preventDefault()
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        history.push("/todolist")
+      })
       .catch((err)=>{
         switch(err.code){
           case "auth/invalid-email":
@@ -350,16 +356,16 @@ function Login(){
           break;
         }
       })
-      .then(history.push("/todolist"));
+      
     }
 
     const authListener = () =>{
       firebase.auth().onAuthStateChanged(user =>{
-        if(user){
+        if(!user){
           clearInputs()
-          setUser(user)
-        }else{
           setUser("")
+        }else{
+          setUser(user)
         }
       })
     }
