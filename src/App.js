@@ -834,24 +834,29 @@ function ToDoList() {
               <WbSunnyRoundedIcon fontSize="small" />
               <Link to="/myday"> <ListItemText primary="My Day"/></Link>
           </ListItem>
+       
           <ListItem>
             <StarBorderRoundedIcon fontSize="small"/>  
             <Link to="/important"> <ListItemText primary="Important"/></Link>
           </ListItem>
+         
           <ListItem>
             <EventRoundedIcon  fontSize="small"/>
             <Link to="/planned"> <ListItemText primary="Planned" /> </Link>
           </ListItem>
+         
           <ListItem>
             <PermIdentityIcon fontSize="small"/>
             <Link to="/assigned">
               <ListItemText primary="Assigned To You" /></Link>
           </ListItem>
+
          <ListItem>
             <AssignmentTurnedInRoundedIcon fontSize="small"/>
             <Link to="/task"><ListItemText primary="Task" /></Link>
           </ListItem>
           </List>
+          <hr/>
           <Divider />
           <Typography style={{color: 'black', marginTop: '230px',marginRight: '0px', marginLeft: '10px', textDecoration:"none" }} >
 <Link  to="/Main" style={{color: '#000000', width: '129px',
@@ -903,35 +908,41 @@ function ToDoList() {
               <AddRoundedIcon fontSize="small" />
               <Link to="#"> <ListItemText primary="Add Step"/></Link>
           </ListItem>
+          <hr/>
           <ListItem>
             <WbSunnyRoundedIcon fontSize="small"/>  
             <Link to="#"> <ListItemText primary="Add To My Day"/></Link>
           </ListItem>
+          <hr/>
           <ListItem>
             <NotificationsActiveRoundedIcon  fontSize="small"/>
             <Link to="#"> <ListItemText primary="Remind Me" /> </Link>
           </ListItem>
+          <hr/>
           <ListItem>
             <EventRoundedIcon fontSize="small"/>
             <Link to="#">
               <ListItemText primary="Add Due Date" /></Link>
           </ListItem>
+          <hr/>
          <ListItem>
             <RepeatRoundedIcon fontSize="small"/>
             <Link to="#"><ListItemText primary="Repeat" /></Link>
           </ListItem>
+          <hr/>
           <ListItem>
             <AttachmentRoundedIcon fontSize="small"/>
             <Link to="#"><ListItemText primary="Add File" /></Link>
           </ListItem>
+          <hr/>
           <ListItem>
           <TextareaAutosize aria-label="minimum height" minRows={5} placeholder="Add Note" />
           </ListItem>
           </List>
-
-          <Link to="/login"><ArrowForwardIosTwoToneIcon style={{color: 'black', marginTop: '230px',marginRight: '0px', marginLeft: '10px'}}/></Link>
-          <Link to="#"><DeleteForeverRoundedIcon  style={{color: 'black', marginTop: '230px',marginRight: '230px', marginLeft: '47px'}}/></Link>
-          
+          <hr/>
+          <Link to="/login"><ArrowForwardIosTwoToneIcon style={{color: 'black', marginBottom: '47%',marginRight: '0px', marginLeft: '10px'}}/></Link>
+          <Link to="#"><DeleteForeverRoundedIcon  style={{color: 'black', marginBottom: '44%',marginRight: '230px', marginLeft: '14%'}}/></Link>
+          <hr/>
 
         </div>
       </div>
