@@ -356,7 +356,6 @@ function Login(){
     authListener();
     },[])
 
-
   return(
     <Grid id="main" container spacing={0} style={{padding: '50px 20px'}} className={classes. paperSyle}>
       <Paper elevation={20} className={classes.root} id="mainPaper" >
@@ -403,7 +402,7 @@ function Login(){
 //=================================================== TodoList Function =================================
 function Todo({ todo, index, markTodo, removeTodo }) {
   return (
-    <div className="todo" >
+    <div className="todo" style={{display: 'flex'}}>
       <span style={{ textDecoration: todo.isDone ? "line-through" : "", padding: '10px'}}>{todo.text}</span>
       <div>
         <Button color="default" variant="contained"  startIcon={<DoneRoundedIcon/>} onClick={() => markTodo(index)}>Complete</Button>{'  '}
@@ -440,7 +439,6 @@ width: '659px', display: 'flex', flexDirection: 'culumn', justifyContent: 'flex-
      </div>
   );
 }
-
 
 function MyDay(){
   const [todos, setTodos] = React.useState([
@@ -715,7 +713,17 @@ const routes = [
 ];
 
 function ToDoList() {
-
+  const text = {
+    color: "black",
+    fontWeight: 700, 
+    fontStyle: 'normal', 
+    fontFamily: 'Arvo, serif',
+};
+const text2 = {
+  color: "#19181c", 
+  fontStyle: 'normal', 
+  fontFamily: 'Arvo, serif',
+};
   return (
     <Router>
 
@@ -724,37 +732,36 @@ function ToDoList() {
         <div
           style={{ width: '298px', height: '800px', backgroundColor: 'rgba(164, 183, 182, 0.69)', overflow: 'hidden', borderRadius: '10px 0px 10px 0px'
           }} >
-          <TextField variant="outlined" margin="normal" fullWidth id="seach" placeholder="Search" name="Search" placeholderColor="#FFFFFF" padding={44} radius={8} backgroundColor="#FFFFFF" label="Search" />
+          <TextField variant="outlined" margin="normal" fullWidth id="seach" placeholder="Search" name="Search" padding={44} radius={30} label="Search" />
 
           <List  style={{ listStyleType: "none", padding: 0,color: 'black' }}>
-          <ListItem>
-              <WbSunnyRoundedIcon fontSize="small" />
-              <Link to="/myday"> <ListItemText primary="My Day"/></Link>
+          <ListItem > 
+              <WbSunnyRoundedIcon fontSize="small" style={{fill: "yellow"}}/>
+              <Link to="/myday"> <ListItemText primaryTypographyProps={{ style: text }} primary="My Day"/></Link>
           </ListItem>
        
           <ListItem>
-            <StarBorderRoundedIcon fontSize="small"/>  
-            <Link to="/important"> <ListItemText primary="Important"/></Link>
+            <StarBorderRoundedIcon fontSize="small" style={{fill: "gold"}}/>  
+            <Link to="/important"> <ListItemText primaryTypographyProps={{ style: text }} primary="Important"/></Link>
           </ListItem>
          
           <ListItem>
-            <EventRoundedIcon  fontSize="small"/>
-            <Link to="/planned"> <ListItemText primary="Planned" /> </Link>
+            <EventRoundedIcon  fontSize="small" style={{fill: "green"}}/>
+            <Link to="/planned"> <ListItemText primaryTypographyProps={{ style: text }} primary="Planned" /> </Link>
           </ListItem>
          
           <ListItem>
-            <PermIdentityIcon fontSize="small"/>
+            <PermIdentityIcon fontSize="small" style={{fill: "#394d44"}}/>
             <Link to="/assigned">
-              <ListItemText primary="Assigned To You" /></Link>
+              <ListItemText primaryTypographyProps={{ style: text }} primary="Assigned To You" /></Link>
           </ListItem>
 
          <ListItem>
-            <AssignmentTurnedInRoundedIcon fontSize="small"/>
-            <Link to="/task"><ListItemText primary="Task" /></Link>
+            <AssignmentTurnedInRoundedIcon fontSize="small" style={{fill: "#5f6c82"}}/>
+            <Link to="/task"><ListItemText primaryTypographyProps={{ style: text }} primary="Task" /></Link>
           </ListItem>
           </List>
           <hr/>
-          <Divider />
           <Typography style={{color: 'black', marginTop: '230px',marginRight: '0px', marginLeft: '10px', textDecoration:"none" }} >
 <Link  to="/Main" style={{color: '#000000', width: '129px',
   height: '32px'}} ><AddRoundedIcon /> New List </Link></Typography  >
@@ -785,33 +792,33 @@ function ToDoList() {
           <List  style={{ listStyleType: "none", padding: 0, color: 'black' }}>
           <ListItem>
               <AddRoundedIcon fontSize="small" />
-              <Link to="#"> <ListItemText primary="Add Step"/></Link>
+              <Link to="#"> <ListItemText primaryTypographyProps={{ style: text2 }} primary="Add Step"/></Link>
           </ListItem>
           <hr/>
           <ListItem>
-            <WbSunnyRoundedIcon fontSize="small"/>  
-            <Link to="#"> <ListItemText primary="Add To My Day"/></Link>
+            <WbSunnyRoundedIcon fontSize="small" style={{fill: "yellow"}}/>  
+            <Link to="#"> <ListItemText primaryTypographyProps={{ style: text2 }} primary="Add To My Day"/></Link>
           </ListItem>
           <hr/>
           <ListItem>
-            <NotificationsActiveRoundedIcon  fontSize="small"/>
-            <Link to="#"> <ListItemText primary="Remind Me" /> </Link>
+            <NotificationsActiveRoundedIcon  fontSize="small" style={{fill: "gold"}} />
+            <Link to="#"> <ListItemText primaryTypographyProps={{ style: text2 }} primary="Remind Me" /> </Link>
           </ListItem>
           <hr/>
           <ListItem>
-            <EventRoundedIcon fontSize="small"/>
+            <EventRoundedIcon fontSize="small" style={{fill: "green"}}/>
             <Link to="#">
-              <ListItemText primary="Add Due Date" /></Link>
+              <ListItemText primaryTypographyProps={{ style: text2 }} primary="Add Due Date" /></Link>
           </ListItem>
           <hr/>
          <ListItem>
-            <RepeatRoundedIcon fontSize="small"/>
-            <Link to="#"><ListItemText primary="Repeat" /></Link>
+            <RepeatRoundedIcon fontSize="small" style={{fill: "white"}}/>
+            <Link to="#"><ListItemText primaryTypographyProps={{ style: text2 }} primary="Repeat" /></Link>
           </ListItem>
           <hr/>
           <ListItem>
-            <AttachmentRoundedIcon fontSize="small"/>
-            <Link to="#"><ListItemText primary="Add File" /></Link>
+            <AttachmentRoundedIcon fontSize="small" style={{fill: "white"}}  />
+            <Link to="#"><ListItemText primaryTypographyProps={{ style: text2 }} primary="Add File" /></Link>
           </ListItem>
           <hr/>
           <ListItem>
@@ -819,8 +826,8 @@ function ToDoList() {
           </ListItem>
           </List>
           <hr/>
-          <Link to="/login"><ArrowForwardIosTwoToneIcon style={{color: 'black', marginBottom: '47%',marginRight: '0px', marginLeft: '10px'}}/></Link>
-          <Link to="#"><DeleteForeverRoundedIcon  style={{color: 'black', marginBottom: '44%',marginRight: '230px', marginLeft: '14%'}}/></Link>
+          <Link to="/login"><ArrowForwardIosTwoToneIcon style={{color: '', marginBottom: '47%',marginRight: '0px', marginLeft: '10px'}}/></Link>
+          <Link to="#"><DeleteForeverRoundedIcon  style={{color: 'red', marginBottom: '44%',marginRight: '230px', marginLeft: '14%'}}/></Link>
           <hr/>
         </div>
       </div>
