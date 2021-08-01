@@ -10,7 +10,7 @@ Button,
 }from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
+
 //Icons Imports
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import WbSunnyRoundedIcon from '@material-ui/icons/WbSunnyRounded';
@@ -44,6 +44,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+//Redux Imports
+
 //Firebase imports
 import {useHistory} from "react-router-dom";
 import firebase from "firebase/app";
@@ -400,6 +402,29 @@ function Login(){
 </Grid>)
 }
 //=================================================== TodoList Function =================================
+
+// Define an initial state value for the app
+const initialState = {
+  text: "",
+  isDone: false
+}
+
+// Create a "reducer" function that determines what the new state
+// should be when something happens in the app
+function  reducer(state = initialState, action) {
+  // Reducers usually look at the type of action that happened
+  switch (action.type) {
+    case 'counter/incremented':
+      return { ...state, value: state.value + 1 }
+    case 'counter/decremented':
+      return { ...state, value: state.value - 1 }
+    default:
+      // If the reducer doesn't care about this action type,
+      // return the existing state unchanged
+      return state
+  }
+}
+
 function Todo({ todo, index, markTodo, removeTodo }) {
   return (
     <div className="todo" style={{display: 'flex'}}>
