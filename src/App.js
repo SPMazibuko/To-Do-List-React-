@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import {Grid, 
   Paper,
@@ -8,10 +8,10 @@ Button,
  Checkbox,
  List,
 }from '@material-ui/core';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Divider from '@material-ui/core/Divider';
+//Icons Imports
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import WbSunnyRoundedIcon from '@material-ui/icons/WbSunnyRounded';
 import AssignmentTurnedInRoundedIcon from '@material-ui/icons/AssignmentTurnedInRounded';
@@ -19,7 +19,6 @@ import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 import EventRoundedIcon from '@material-ui/icons/EventRounded';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
-import Divider from '@material-ui/core/Divider';
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import DoneRoundedIcon from '@material-ui/icons/DoneRounded';
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
@@ -28,33 +27,30 @@ import NotificationsActiveRoundedIcon from '@material-ui/icons/NotificationsActi
 import RepeatRoundedIcon from '@material-ui/icons/RepeatRounded';
 import AttachmentRoundedIcon from '@material-ui/icons/AttachmentRounded';
 import ArrowForwardIosTwoToneIcon from '@material-ui/icons/ArrowForwardIosTwoTone';
+//Forms and Cards Imports
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-
-
-import React from "react";
 import { Button, Card, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import React from "react";
+//Routes and switch Imports
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+//Firebase imports
 import {useHistory} from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore"
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+//Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDy98scBj_05f6VoJqcXczg5sqZcG3zWXc",
   authDomain: "to-do-list-59982.firebaseapp.com",
@@ -65,13 +61,13 @@ const firebaseConfig = {
   measurementId: "G-WFSWHRGCCJ"
 };
 
+//Firebase initialization
 if(!firebase.apps.length){
   firebase.initializeApp(firebaseConfig);
 }
-
+//Styles of the application
 const useStyles = makeStyles((theme) => ({
       root:{
-
         display: 'flex',
         justifyContent: 'space-around',
         overflow: 'hidden',
@@ -172,8 +168,6 @@ export default function App() {
         <div style={{ flex: 1, padding: "10px" }}>
           <Switch>
             {routes.map((route, index) => (
-              // Render more <Route>s with the same paths as
-              // above, but different components this time.
               <Route
                 key={index}
                 path={route.path}
@@ -253,23 +247,18 @@ function Signup(){
     },[])
 
   return(
-  <Grid id="main" container spacing={0} >
-  <Paper elevation={20} className={classes.root} id="mainPaper" >
-    <Grid id="formSetting" style={{ padding: '20px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', textAlign: 'center', }} >
-    <Grid container spacing={1}>
-      <Paper elevation ={0} className={classes.paper} id="left">
-       <Grid item xs={10} >
-
-       <Grid align='center'>
-          <h2 style={{overflow: 'visible', whiteSpace: 'pre', fontSize: '46px', letterSpacing: '-2px', color: '#333', lineHeight: '1.1', fontWeight: 700, fontStyle: 'normal', fontFamily: 'Arvo, serif', margin:0, }}>
-          Create An Account
-          </h2>
-
-          <Typography variant='caption'>
+    <Grid id="main" container spacing={0} style={{padding: '50px 20px'}} className={classes. paperSyle}>
+      <Paper elevation={20} className={classes.root} id="mainPaper" >
+       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={20} square style={{ padding: '20px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', }}>
+        <Grid item xs={11} >
+          <Grid align='center'>
+           <h2 style={{overflow: 'visible', whiteSpace: 'pre', fontSize: '46px', letterSpacing: '-2px', color: '#333', lineHeight: '1.1', fontWeight: 700, fontStyle: 'normal', fontFamily: 'Arvo, serif', margin:0, }}>
+            Create An Account
+            </h2>
+             <Typography variant='caption'>
              Please fill up all fields in this form
-          </Typography>
+              </Typography>
 
-          
             <form>
               <TextField variant="outlined" margin="normal" required fullWidth id="nm" placeholder="Enter Your Name" name="name" padding={44} radius={8} label="Name:" />
 
@@ -298,21 +287,14 @@ function Signup(){
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </Paper>
     </Grid>
      </Grid>
-  <Grid item xs={6}>
-    <div  className={classes.image}/>
-  </Grid>
+     <Grid item xs={false} sm={4} md={7} className={classes.image} />
 </Paper>
 </Grid>)
   
 }
-
-
-//================================================== Login Function =======================================
-
+//================================================== Login Function =====================================
 function Login(){
   const classes = useStyles();
   const history = useHistory()
@@ -322,7 +304,6 @@ function Login(){
   const [password,setPassword] = useState('')
   const [emailError, setEmailError]=useState('');
   const [PasswordError, setPasswordError] = useState('');
-
 
   const clearInputs=()=>{
     setEmail('');
@@ -377,19 +358,17 @@ function Login(){
 
 
   return(
-    <Grid id="main" container spacing={0} style={{padding: '50px 20px'}}>
-       <Paper elevation={20} className={classes.root} id="mainPaper" >
-         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={20} square style={{ padding: '90px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', }}>
-
+    <Grid id="main" container spacing={0} style={{padding: '50px 20px'}} className={classes. paperSyle}>
+      <Paper elevation={20} className={classes.root} id="mainPaper" >
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={20} square style={{ padding: '90px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', }}>
          <Grid item xs={11} >
-  
-         <Grid align='center' style={{paddingLeft:'20px'}}>
-            <h2 style={{overflow: 'visible', whiteSpace: 'pre', fontSize: '46px', letterSpacing: '-2px', color: '#333', lineHeight: '1.1', fontWeight: 700, fontStyle: 'normal', fontFamily: 'Arvo, serif', margin:0, }}>
-            Welcome Back
+          <Grid align='center' style={{paddingLeft:'20px'}}>
+            <h2 style={{overflow: 'visible', whiteSpace: 'pre', fontSize: '46px', letterSpacing: '-2px', color: '#333', lineHeight: '1.1', fontWeight: 700, fontStyle: 'normal', fontFamily: 'Arvo,   serif', margin:0, }}>
+              Welcome Back
             </h2>
             <form>
 
-            <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" padding={44} radius={8}  label="Email Address:" value={email} onChange={(e) => setEmail(e.target.value)}/>
+              <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" padding={44} radius={8}  label="Email Address:" value={email} onChange={(e) => setEmail(e.target.value)}/>
               <p className="errorMsg">{emailError}</p>
 
               <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Enter Password" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -409,8 +388,8 @@ function Login(){
                 </Link>
               </Grid>
               <Grid item>
-                        <Link to="/" variant="body2">
-                        {"Don't have an account? Sign Up"}
+                <Link to="/" variant="body2">
+                  {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
@@ -421,18 +400,10 @@ function Login(){
 </Paper>
 </Grid>)
 }
-
-
-//=================================================== TodoList Function =======================================
-
-
+//=================================================== TodoList Function =================================
 function Todo({ todo, index, markTodo, removeTodo }) {
-
   return (
-    <div
-      className="todo" 
-      
-    >
+    <div className="todo" >
       <span style={{ textDecoration: todo.isDone ? "line-through" : "", padding: '10px'}}>{todo.text}</span>
       <div>
         <Button color="default" variant="contained"  startIcon={<DoneRoundedIcon/>} onClick={() => markTodo(index)}>Complete</Button>{'  '}
@@ -443,7 +414,6 @@ function Todo({ todo, index, markTodo, removeTodo }) {
 }
 
 function FormTodo({ addTodo }) {
-
   const classes = useStyles();
   const [value, setValue] = React.useState("");
 
@@ -455,24 +425,10 @@ function FormTodo({ addTodo }) {
   };
 
   return (
- 
     <div className={classes.root}>
       <Form onSubmit={handleSubmit} 
-        style={{
-          marginTop: '40px',
-          marginRight: '60px',
-          marginLeft: '30px',
-          textDecoration:"none",
-          width: '659px',
-          display: 'flex',
-          flexDirection: 'culumn',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          padding: '10px 38px 39px 38px',
-           backgroundColor: 'rgba(23, 38, 43, 0.3)',
-         overflow: 'visible',
-          borderRadius: '10px'
-      }}> 
+        style={{ marginTop: '40px', marginRight: '60px', marginLeft: '30px', textDecoration:"none",
+width: '659px', display: 'flex', flexDirection: 'culumn', justifyContent: 'flex-start', alignItems: 'center', padding: '10px 38px 39px 38px', backgroundColor: 'rgba(23, 38, 43, 0.3)', overflow: 'visible',borderRadius: '10px'}}> 
 
       <Form.Group>
       <Form.Control type="text" className="" value={value} onChange={e => setValue(e.target.value)} placeholder="Add new todo" />
@@ -522,13 +478,7 @@ function MyDay(){
           {todos.map((todo, index) => (
             <Card>
               <CardContent>
-                <Todo
-                key={index}
-                index={index}
-                todo={todo}
-                markTodo={markTodo}
-                removeTodo={removeTodo}
-                />
+                <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
               </CardContent>
             </Card>
           ))}
@@ -573,13 +523,7 @@ function Important(){
           {todos.map((todo, index) => (
             <Card>
               <CardContent>
-                <Todo
-                key={index}
-                index={index}
-                todo={todo}
-                markTodo={markTodo}
-                removeTodo={removeTodo}
-                />
+                <Todo key={index} index={index} todo={todo} markTodo={markTodo} removeTodo={removeTodo} />
               </CardContent>
             </Card>
           ))}
@@ -587,8 +531,7 @@ function Important(){
         <FormTodo addTodo={addTodo} />
       </div>
     </div>
-  );
-}
+  );}
 
 function Planned(){
   const [todos, setTodos] = React.useState([
@@ -623,13 +566,7 @@ function Planned(){
           {todos.map((todo, index) => (
             <Card>
               <CardContent>
-                <Todo
-                key={index}
-                index={index}
-                todo={todo}
-                markTodo={markTodo}
-                removeTodo={removeTodo}
-                />
+                <Todo key={index} index={index}  todo={todo} markTodo={markTodo} removeTodo={removeTodo} />
               </CardContent>
             </Card>
           ))}
@@ -674,13 +611,7 @@ function Assigned(){
           {todos.map((todo, index) => (
             <Card>
               <CardContent>
-                <Todo
-                key={index}
-                index={index}
-                todo={todo}
-                markTodo={markTodo}
-                removeTodo={removeTodo}
-                />
+                <Todo key={index} index={index} todo={todo} markTodo={markTodo} removeTodo={removeTodo} />
               </CardContent>
             </Card>
           ))}
@@ -724,13 +655,7 @@ function Task(){
           {todos.map((todo, index) => (
             <Card>
               <CardContent>
-                <Todo
-                key={index}
-                index={index}
-                todo={todo}
-                markTodo={markTodo}
-                removeTodo={removeTodo}
-                />
+                <Todo key={index}  index={index} todo={todo} markTodo={markTodo} removeTodo={removeTodo} />
               </CardContent>
             </Card>
           ))}
@@ -795,28 +720,10 @@ function ToDoList() {
     <Router>
 
 <Link onClick={() => {}}><ArrowBackRoundedIcon  fontSize="small"/></Link>
-      <div 
-        style={{ 
-          display: "flex",
-          width: '1376px',
-          height: '800px',
-          boxShadow: '0px 10px 20px 0px rgba(0, 0, 0, 0.05)',
-          overflow: 'hidden',
-          backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_ohc=Mzk5NExrAZEAX_mxea_&_nc_ht=scontent.fjnb11-1.fna&oh=c895bcb3c89cacaa6ae2ea62f0e2bacf&oe=612970A5" + ")",
-           backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-           backgroundPosition: 'center',
-           borderRadius: '20px'
-   }}>
+      <div style={{  display: "flex", width: '1376px', height: '800px', boxShadow: '0px 10px 20px 0px rgba(0, 0, 0, 0.05)', overflow: 'hidden', backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_ohc=Mzk5NExrAZEAX_mxea_&_nc_ht=scontent.fjnb11-1.fna&oh=c895bcb3c89cacaa6ae2ea62f0e2bacf&oe=612970A5" + ")", backgroundSize: 'cover', backgroundRepeat: 'no-repeat',backgroundPosition: 'center', borderRadius: '20px' }}>
         <div
-          style={{
-            width: '298px',
-             height: '800px',
-             backgroundColor: 'rgba(164, 183, 182, 0.69)',
-              overflow: 'hidden',
-             borderRadius: '10px 0px 10px 0px'
-          }}
-        >
+          style={{ width: '298px', height: '800px', backgroundColor: 'rgba(164, 183, 182, 0.69)', overflow: 'hidden', borderRadius: '10px 0px 10px 0px'
+          }} >
           <TextField variant="outlined" margin="normal" fullWidth id="seach" placeholder="Search" name="Search" placeholderColor="#FFFFFF" padding={44} radius={8} backgroundColor="#FFFFFF" label="Search" />
 
           <List  style={{ listStyleType: "none", padding: 0,color: 'black' }}>
@@ -864,35 +771,17 @@ function ToDoList() {
         </div>
 
         <div
-          style={{
-            width: '750px',
-             height: '800px',
-              overflow: 'hidden',
-             borderRadius: '15px'
-          }}
-        >
+          style={{ width: '750px', height: '800px', overflow: 'hidden', borderRadius: '15px' }} >
           <Switch>
             {routes.map((route, index) => (
-              <Route
-                key={index}
-                path={route.path}
-                exact={route.exact}
-                children={<route.main />}
-              />
+              <Route key={index}  path={route.path} exact={route.exact} children={<route.main />} />
             ))}
           </Switch>
         </div>
         <div
-        style={{
-          width: '364px',
-          height: '800px',
-          backgroundColor: 'rgba(164, 183, 182, 0.69)',
-          overflow: 'visible',
-          borderRadius: '0px 10px 0px 10px',
-          padding: '10px'
+        style={{ width: '364px', height: '800px', backgroundColor: 'rgba(164, 183, 182, 0.69)', overflow: 'visible', borderRadius: '0px 10px 0px 10px', padding: '10px'
         }}>
           <FormControlLabel value="" control={<Radio />} label="Write about time blocking" />
-
           <List  style={{ listStyleType: "none", padding: 0, color: 'black' }}>
           <ListItem>
               <AddRoundedIcon fontSize="small" />
@@ -933,7 +822,6 @@ function ToDoList() {
           <Link to="/login"><ArrowForwardIosTwoToneIcon style={{color: 'black', marginBottom: '47%',marginRight: '0px', marginLeft: '10px'}}/></Link>
           <Link to="#"><DeleteForeverRoundedIcon  style={{color: 'black', marginBottom: '44%',marginRight: '230px', marginLeft: '14%'}}/></Link>
           <hr/>
-
         </div>
       </div>
     </Router>
