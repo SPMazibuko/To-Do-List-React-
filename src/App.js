@@ -94,9 +94,10 @@ const useStyles = makeStyles((theme) => ({
       backgroundPosition: 'center',
   },
   paper: {
-    padding: theme.spacing(2),
-    textAlign: 'left',
-    paddingLeft: 30,
+    margin: theme.spacing(8, 4),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 
 }));
@@ -376,26 +377,19 @@ function Login(){
 
 
   return(
-  <Grid id="main" >
-  <Paper elevation={20} className={classes.root} id="mainPaper" >
-    <Grid id="formSetting" style={{ padding: '20px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', textAlign: 'center', }} >
-    <Grid container spacing={1}>
-      <Paper elevation ={0} className={classes.paper} id="left">
-       <Grid item xs={10} >
+    <Grid id="main" container spacing={0} style={{padding: '50px 20px'}}>
+       <Paper elevation={20} className={classes.root} id="mainPaper" >
+         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={20} square style={{ padding: '90px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', }}>
 
-       <Grid align='center'>
-          <h2 style={{overflow: 'visible', whiteSpace: 'pre', fontSize: '46px', letterSpacing: '-2px', color: '#333', lineHeight: '1.1', fontWeight: 700, fontStyle: 'normal', fontFamily: 'Arvo, serif', margin:0, }}>
-          SIGN IN
-          </h2>
-
-          <Typography variant='caption'>
-             
-          </Typography>
-
-          
+         <Grid item xs={11} >
+  
+         <Grid align='center' style={{paddingLeft:'20px'}}>
+            <h2 style={{overflow: 'visible', whiteSpace: 'pre', fontSize: '46px', letterSpacing: '-2px', color: '#333', lineHeight: '1.1', fontWeight: 700, fontStyle: 'normal', fontFamily: 'Arvo, serif', margin:0, }}>
+            Welcome Back
+            </h2>
             <form>
 
-              <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" padding={44} radius={8} label="Email Address:" value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <TextField variant="outlined" margin="normal" required fullWidth id="email" placeholder="Enter Email address" name="email" padding={44} radius={8}  label="Email Address:" value={email} onChange={(e) => setEmail(e.target.value)}/>
               <p className="errorMsg">{emailError}</p>
 
               <TextField variant="outlined" margin="normal" required fullWidth name="password"  placeholder="Enter Password" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -409,25 +403,21 @@ function Login(){
               </Button>
             </form>
             <Grid container>
-                        <Grid item xs>
-                          <Link to="#" variant="body2">
-                             {"Forgot password?"}
-                          </Link>
-                        </Grid>
-                      <Grid item>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
                         <Link to="/" variant="body2">
-                         {"Don't have an account? Sign Up"}
-                        </Link>
-                      </Grid>
-                    </Grid>
+                        {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
-      </Paper>
-    </Grid>
      </Grid>
-  <Grid item xs={6}>
-    <div  className={classes.image}/>
-  </Grid>
+     <Grid item xs={false} sm={4} md={7} className={classes.image} />
 </Paper>
 </Grid>)
 }
