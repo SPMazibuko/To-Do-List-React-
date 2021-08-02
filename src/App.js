@@ -409,29 +409,14 @@ const initialState = {
   isDone: false
 }
 
-// Create a "reducer" function that determines what the new state
-// should be when something happens in the app
-function  reducer(state = initialState, action) {
-  // Reducers usually look at the type of action that happened
-  switch (action.type) {
-    case 'counter/incremented':
-      return { ...state, value: state.value + 1 }
-    case 'counter/decremented':
-      return { ...state, value: state.value - 1 }
-    default:
-      // If the reducer doesn't care about this action type,
-      // return the existing state unchanged
-      return state
-  }
-}
 
 function Todo({ todo, index, markTodo, removeTodo }) {
   return (
-    <div className="todo" style={{display: 'flex'}}>
+    <div className="todo" >
       <span style={{ textDecoration: todo.isDone ? "line-through" : "", padding: '10px'}}>{todo.text}</span>
       <div>
-        <Button color="default" variant="contained"  startIcon={<DoneRoundedIcon/>} onClick={() => markTodo(index)}>Complete</Button>{'  '}
-        <Button color="secondary" variant="contained" startIcon={<DeleteForeverRoundedIcon />} onClick={() => removeTodo(index)}>Delete</Button>
+<DoneRoundedIcon onClick={() => markTodo(index)}/>{'  '}
+       <DeleteForeverRoundedIcon onClick={() => removeTodo(index)} /> 
       </div>
     </div>
   );
@@ -491,11 +476,13 @@ function MyDay(){
     setTodos(newTodos);
   };
 
+  
   return (
     <div className="" style={{height: '100%',
       display: 'flex',
       flexDirection: 'column',
-      borderRadius: '15px'}}>
+      borderRadius: '15px',  overflow: 'scroll'}}
+      >
       <div className="">
 
         <div>
@@ -754,9 +741,9 @@ const text2 = {
     <Router>
 
 <Link onClick={() => {}}><ArrowBackRoundedIcon  fontSize="small"/></Link>
-      <div style={{  display: "flex", width: '1376px', height: '800px', boxShadow: '0px 10px 20px 0px rgba(0, 0, 0, 0.05)', overflow: 'hidden', backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_ohc=Mzk5NExrAZEAX_mxea_&_nc_ht=scontent.fjnb11-1.fna&oh=c895bcb3c89cacaa6ae2ea62f0e2bacf&oe=612970A5" + ")", backgroundSize: 'cover', backgroundRepeat: 'no-repeat',backgroundPosition: 'center', borderRadius: '20px' }}>
+      <div style={{  display: "flex", width: '1356px', height: '650px', boxShadow: '0px 10px 20px 0px rgba(0, 0, 0, 0.05)', overflow: 'hidden', backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_ohc=Mzk5NExrAZEAX_mxea_&_nc_ht=scontent.fjnb11-1.fna&oh=c895bcb3c89cacaa6ae2ea62f0e2bacf&oe=612970A5" + ")", backgroundSize: 'cover', backgroundRepeat: 'no-repeat',backgroundPosition: 'center', borderRadius: '20px' }}>
         <div
-          style={{ width: '298px', height: '800px', backgroundColor: 'rgba(164, 183, 182, 0.69)', overflow: 'hidden', borderRadius: '10px 0px 10px 0px'
+          style={{ width: '298px', height: '650px', backgroundColor: 'rgba(164, 183, 182, 0.69)', overflow: 'hidden', borderRadius: '10px 0px 10px 0px'
           }} >
           <TextField variant="outlined" margin="normal" fullWidth id="seach" placeholder="Search" name="Search" padding={44} radius={30} label="Search" />
 
@@ -804,7 +791,7 @@ const text2 = {
         </div>
 
         <div
-          style={{ width: '750px', height: '800px', overflow: 'hidden', borderRadius: '15px' }} >
+          style={{ width: '750px', height: '650px', overflow: 'hidden', borderRadius: '15px' }} >
           <Switch>
             {routes.map((route, index) => (
               <Route key={index}  path={route.path} exact={route.exact} children={<route.main />} />
@@ -812,7 +799,7 @@ const text2 = {
           </Switch>
         </div>
         <div
-        style={{ width: '364px', height: '800px', backgroundColor: 'rgba(164, 183, 182, 0.69)', overflow: 'visible', borderRadius: '0px 10px 0px 10px', padding: '10px'
+        style={{ width: '364px', height: '650px', backgroundColor: 'rgba(164, 183, 182, 0.69)', overflow: 'visible', borderRadius: '0px 10px 0px 10px', padding: '10px'
         }}>
           <FormControlLabel value="" control={<Radio />} label="Write about time blocking" />
           <List  style={{ listStyleType: "none", padding: 0, color: 'black' }}>
@@ -848,13 +835,13 @@ const text2 = {
           </ListItem>
           <hr/>
           <ListItem>
-          <TextareaAutosize aria-label="minimum height" minRows={5} placeholder="Add Note" />
+          <TextareaAutosize aria-label="minimum height" minRows={2} placeholder="Add Note" />
           </ListItem>
           </List>
-          <hr/>
-          <Link to="/login"><ArrowForwardIosTwoToneIcon style={{color: '', marginBottom: '47%',marginRight: '0px', marginLeft: '10px'}}/></Link>
-          <Link to="#"><DeleteForeverRoundedIcon  style={{color: 'red', marginBottom: '44%',marginRight: '230px', marginLeft: '14%'}}/></Link>
-          <hr/>
+
+          <Link to="/login"><ArrowForwardIosTwoToneIcon style={{color: '', marginBottom: '70%',marginRight: '0px', marginLeft: '10px'}}/></Link>
+          <Link to="#"><DeleteForeverRoundedIcon  style={{color: 'red', marginBottom: '70%',marginRight: '23px', marginLeft: '14%'}}/></Link>
+
         </div>
       </div>
     </Router>
