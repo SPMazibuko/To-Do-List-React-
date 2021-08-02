@@ -74,10 +74,10 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-around',
         overflow: 'hidden',
     },
-  paperSyle: {
+  /*paperSyle: {
     backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/218928331_6101479296591986_1474258448850844212_n.jpg?_nc_cat=108&_nc_rgb565=1&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeFEOvTLaX7BLPghEYrUysJdAK9IkqXyckAAr0iSpfJyQFFQjRsgu2Xu5Y19ViDrc7BUrDf6yP6cCUMkPeUWAF6u&_nc_ohc=CwhSAxKVnsMAX-_pyfO&_nc_ht=scontent.fjnb11-1.fna&oh=0d26aba78b31de2b13d4e44de6c516b2&oe=60FC3CB1" + ")",
     color: '#0000000'
-  },
+  },*/
   button: {
     margin: theme.spacing(1),
     
@@ -92,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundPosition: 'center',
   },
   paper: {
-    margin: theme.spacing(8, 4),
+    margin: theme.spacing(4, 2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -249,7 +249,7 @@ function Signup(){
     },[])
 
   return(
-    <Grid id="main" container spacing={0} style={{padding: '50px 20px'}} className={classes. paperSyle}>
+    <Grid id="main" container spacing={0} style={{padding: '10px 20px',  position: 'fixed', }} className={classes. paperSyle}>
       <Paper elevation={20} className={classes.root} id="mainPaper" >
        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={20} square style={{ padding: '20px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', }}>
         <Grid item xs={11} >
@@ -359,7 +359,7 @@ function Login(){
     },[])
 
   return(
-    <Grid id="main" container spacing={0} style={{padding: '50px 20px'}} className={classes. paperSyle}>
+    <Grid id="main" container spacing={0} style={{padding: '10px 20px',  position: 'fixed', }} className={classes. paperSyle}>
       <Paper elevation={20} className={classes.root} id="mainPaper" >
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={20} square style={{ padding: '90px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', }}>
          <Grid item xs={11} >
