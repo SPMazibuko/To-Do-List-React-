@@ -451,15 +451,16 @@ function FormTodo({ addTodo }) {
   return (
     <div className={classes.root}>
       <Form onSubmit={handleSubmit} 
-        style={{ marginTop: '40px', marginRight: '60px', marginLeft: '30px', textDecoration:"none",
-width: '659px', display: 'flex', flexDirection: 'culumn', justifyContent: 'flex-start', alignItems: 'center', padding: '10px 38px 39px 38px', backgroundColor: 'rgba(23, 38, 43, 0.3)', overflow: 'visible',borderRadius: '10px'}}> 
+        style={{
+width: '659px', display: 'flex', flexDirection: 'culumn',padding: '10px 38px 39px 38px',borderRadius: '10px'}}> 
 
       <Form.Group>
       <Form.Control type="text" className="" value={value} onChange={e => setValue(e.target.value)} placeholder="Add new todo" />
+
         </Form.Group>
-          <Button type='submit' color="primary" variant="contained" className="" startIcon={<AddCircleOutlineRoundedIcon />} >
-          Add an Item
-          </Button>
+        <Button type="submit" className="add-btn" variant="contained" startIcon={<AddCircleOutlineRoundedIcon />}>
+        Add
+        </Button>
         </Form>
      </div>
   );
