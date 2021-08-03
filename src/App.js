@@ -415,8 +415,8 @@ function Todo({ todo, index, markTodo, removeTodo }) {
     <div className="todo" >
       <span style={{ textDecoration: todo.isDone ? "line-through" : "", padding: '10px'}}>{todo.text}</span>
       <div>
-<DoneRoundedIcon onClick={() => markTodo(index)}/>{'  '}
-       <DeleteForeverRoundedIcon onClick={() => removeTodo(index)} /> 
+<DoneRoundedIcon style={{fill: "green"}} onClick={() => markTodo(index)}/>{'  '}
+       <DeleteForeverRoundedIcon style={{fill: "red"}} onClick={() => removeTodo(index)} /> 
       </div>
     </div>
   );
