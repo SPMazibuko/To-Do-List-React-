@@ -487,7 +487,7 @@ function MyDay(){
 
         <div>
           {todos.map((todo, index) => (
-            <Card style={{height:"500px",width: '659px', overflow:'auto'}}>
+            <Card style={{overflow:'auto'}}>
             <ul>
               <li>
                 
