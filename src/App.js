@@ -437,7 +437,7 @@ function FormTodo({ addTodo }) {
     <div className={classes.root}>
       <Form onSubmit={handleSubmit} 
         style={{
-width: '659px', display: 'flex', flexDirection: 'culumn',padding: '10px 38px 39px 38px',borderRadius: '10px'}}> 
+width: '659px', display: 'flex', flexDirection: 'culumn',padding: '10px 38px 39px 38px',borderRadius: '10px', marginTop:"30px", marginLeft:'30%'}}> 
 
       <Form.Group>
       <Form.Control type="text" className="" value={value} onChange={e => setValue(e.target.value)} placeholder="Add new todo" />
@@ -485,8 +485,9 @@ function MyDay(){
       >
       <div className="">
 
-        <div style={{overflow: 'auto'}}>
+        <div>
           {todos.map((todo, index) => (
+            <Card style={{height:"500px",width: '659px', overflow:'auto'}}>
             <ul>
               <li>
                 
@@ -494,6 +495,7 @@ function MyDay(){
                 
                 </li>
             </ul>
+            </Card>
           ))}
         </div>
         <FormTodo addTodo={addTodo} />
@@ -681,7 +683,7 @@ function Task(){
           </ul>
           ))}
         </div>
-        <FormTodo addTodo={addTodo} />
+        <FormTodo addTodo={addTodo}  />
       </div>
     </div>
   );
