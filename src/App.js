@@ -412,7 +412,7 @@ const initialState = {
 
 function Todo({ todo, index, markTodo, removeTodo }) {
   return (
-    <div className="todo" >
+    <div className="todo" style={{display:'flex'}}>
       <span style={{ textDecoration: todo.isDone ? "line-through" : "", padding: '10px'}}>{todo.text}</span>
       <div>
 <DoneRoundedIcon style={{fill: "green"}} onClick={() => markTodo(index)}/>{'  '}
@@ -478,20 +478,22 @@ function MyDay(){
 
   
   return (
-    <div className="" style={{height: '100%',
+    <div className="" style={{
       display: 'flex',
       flexDirection: 'column',
-      borderRadius: '15px',  overflow: 'scroll'}}
+      borderRadius: '15px', }}
       >
       <div className="">
 
-        <div>
+        <div style={{overflow: 'auto'}}>
           {todos.map((todo, index) => (
-            <Card>
-              <CardContent>
+            <ul>
+              <li>
+                
                 <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
-              </CardContent>
-            </Card>
+                
+                </li>
+            </ul>
           ))}
         </div>
         <FormTodo addTodo={addTodo} />
@@ -532,11 +534,13 @@ function Important(){
        
         <div>
           {todos.map((todo, index) => (
-            <Card>
-              <CardContent>
-                <Todo key={index} index={index} todo={todo} markTodo={markTodo} removeTodo={removeTodo} />
-              </CardContent>
-            </Card>
+            <ul>
+            <li>
+              
+              <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
+              
+              </li>
+          </ul>
           ))}
         </div>
         <FormTodo addTodo={addTodo} />
@@ -575,11 +579,13 @@ function Planned(){
         
         <div>
           {todos.map((todo, index) => (
-            <Card>
-              <CardContent>
-                <Todo key={index} index={index}  todo={todo} markTodo={markTodo} removeTodo={removeTodo} />
-              </CardContent>
-            </Card>
+            <ul>
+            <li>
+              
+              <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
+              
+              </li>
+          </ul>
           ))}
         </div>
         <FormTodo addTodo={addTodo} />
@@ -620,11 +626,13 @@ function Assigned(){
        
         <div>
           {todos.map((todo, index) => (
-            <Card>
-              <CardContent>
-                <Todo key={index} index={index} todo={todo} markTodo={markTodo} removeTodo={removeTodo} />
-              </CardContent>
-            </Card>
+            <ul>
+            <li>
+              
+              <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
+              
+              </li>
+          </ul>
           ))}
         </div>
         <FormTodo addTodo={addTodo} />
@@ -664,11 +672,13 @@ function Task(){
         
         <div>
           {todos.map((todo, index) => (
-            <Card>
-              <CardContent>
-                <Todo key={index}  index={index} todo={todo} markTodo={markTodo} removeTodo={removeTodo} />
-              </CardContent>
-            </Card>
+            <ul>
+            <li>
+              
+              <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
+              
+              </li>
+          </ul>
           ))}
         </div>
         <FormTodo addTodo={addTodo} />
