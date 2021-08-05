@@ -417,8 +417,13 @@ const initialState = {
 
 function Todo({ todo, index, markTodo, removeTodo }) {
   return (
-    <div className="todo" style={{display:'flex'}}>
-      <span style={{ textDecoration: todo.isDone ? "line-through" : "", padding: '10px'}}>{todo.text}</span>
+    <div style={{  
+      alignItems: 'center',
+      display: 'flex',
+      fontSiize: '18px',
+      justifyContent: 'spaceBetween', }}>
+
+      <span style={{ textDecoration: todo.isDone ? "line-through" : "", padding: '10px', flexGrow: '3'}}>{todo.text}</span>
       <div>
 <DoneRoundedIcon style={{fill: "green"}} onClick={() => markTodo(index)}/>{'  '}
        <DeleteForeverRoundedIcon style={{fill: "red"}} onClick={() => removeTodo(index)} /> 
@@ -441,7 +446,15 @@ function FormTodo({ addTodo }) {
     <div className={classes.root}>
       <Form onSubmit={handleSubmit} 
         style={{
-width: '659px', display: 'flex', flexDirection: 'culumn',padding: '10px 38px 39px 38px',borderRadius: '10px', marginTop:"30px", marginLeft:'30%'}}> 
+        width: '659px',
+        display: 'flex', 
+        flexDirection: 'culumn',
+        padding: '10px 38px 39px 38px',
+        borderRadius: '10px', 
+        marginTop:"500px", 
+        marginLeft:'22%',
+        zIndex: '1',
+        }}> 
 
       <Form.Group>
       <Form.Control type="text" className="" value={value} onChange={e => setValue(e.target.value)} placeholder="Add new todo" />
@@ -491,14 +504,10 @@ function MyDay(){
 
         <div>
           {todos.map((todo, index) => (
-            <Card style={{overflow:'auto'}}>
-            <ul>
-              <li>
-                
+            <Card>
+              <CardContent>
                 <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
-                
-                </li>
-            </ul>
+                </CardContent>
             </Card>
           ))}
         </div>
@@ -535,22 +544,25 @@ function Important(){
   };
 
   return (
-    <div className="app">
-      <div className="container">
-       
+    <div className="" style={{
+      display: 'flex',
+      flexDirection: 'column',
+      borderRadius: '15px', }}
+      >
+      <div className="">
+
         <div>
           {todos.map((todo, index) => (
-            <ul>
-            <li>
-              
-              <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
-              
-              </li>
-          </ul>
+            <Card>
+              <CardContent>
+                <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
+                </CardContent>
+            </Card>
           ))}
         </div>
         <FormTodo addTodo={addTodo} />
       </div>
+      
     </div>
   );}
 
@@ -580,18 +592,20 @@ function Planned(){
   };
 
   return (
-    <div className="app">
-      <div className="container">
-        
+    <div className="" style={{
+      display: 'flex',
+      flexDirection: 'column',
+      borderRadius: '15px', }}
+      >
+      <div className="">
+
         <div>
           {todos.map((todo, index) => (
-            <ul>
-            <li>
-              
-              <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
-              
-              </li>
-          </ul>
+            <Card>
+              <CardContent>
+                <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
+                </CardContent>
+            </Card>
           ))}
         </div>
         <FormTodo addTodo={addTodo} />
@@ -627,22 +641,25 @@ function Assigned(){
   };
 
   return (
-    <div className="app">
-      <div className="container">
-       
+    <div className="" style={{
+      display: 'flex',
+      flexDirection: 'column',
+      borderRadius: '15px', }}
+      >
+      <div className="">
+
         <div>
           {todos.map((todo, index) => (
-            <ul>
-            <li>
-              
-              <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
-              
-              </li>
-          </ul>
+            <Card>
+              <CardContent>
+                <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
+                </CardContent>
+            </Card>
           ))}
         </div>
         <FormTodo addTodo={addTodo} />
       </div>
+      
     </div>
   );
 }
@@ -673,22 +690,24 @@ function Task(){
   };
 
   return (
-    <div className="app">
-      <div className="container">
-        
+    <div className="" style={{
+      display: 'flex',
+      flexDirection: 'column',
+      borderRadius: '15px', }}
+      >
+      <div className="">
         <div>
           {todos.map((todo, index) => (
-            <ul>
-            <li>
-              
-              <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
-              
-              </li>
-          </ul>
+            <Card>
+              <CardContent>
+                <Todo key={index} index={index}  todo={todo}  markTodo={markTodo} removeTodo={removeTodo} />
+                </CardContent>
+            </Card>
           ))}
         </div>
-        <FormTodo addTodo={addTodo}  />
+        <FormTodo addTodo={addTodo} />
       </div>
+      
     </div>
   );
 }
@@ -759,8 +778,8 @@ const text2 = {
   return (
     <Router>
 
-      <div style={{  display: "flex", width: '1356px', height: '650px', boxShadow: '0px 10px 20px 0px rgba(0, 0, 0, 0.05)', overflow: 'hidden', backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_ohc=Mzk5NExrAZEAX_mxea_&_nc_ht=scontent.fjnb11-1.fna&oh=c895bcb3c89cacaa6ae2ea62f0e2bacf&oe=612970A5" + ")", backgroundSize: 'cover', backgroundRepeat: 'no-repeat',backgroundPosition: 'center', borderRadius: '20px' }}>
-        <div
+      <Grid style={{  display: "flex", width: '1356px', height: '650px', boxShadow: '0px 10px 20px 0px rgba(0, 0, 0, 0.05)', overflow: 'hidden', backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_ohc=Mzk5NExrAZEAX_mxea_&_nc_ht=scontent.fjnb11-1.fna&oh=c895bcb3c89cacaa6ae2ea62f0e2bacf&oe=612970A5" + ")", backgroundSize: 'cover', backgroundRepeat: 'no-repeat',backgroundPosition: 'center', borderRadius: '20px' }}>
+        <Grid
           style={{ width: '298px', height: '650px', backgroundColor: 'rgba(164, 183, 182, 0.69)', overflow: 'hidden', borderRadius: '10px 0px 10px 0px'
           }} >
           <TextField variant="outlined" margin="normal" fullWidth id="seach" placeholder="Search" name="Search" padding={44} radius={30} label="Search" />
@@ -869,16 +888,16 @@ onClick={()=>{
 
 
           </Switch>
-        </div>
+        </Grid>
 
-        <div
-          style={{ width: '750px', height: '650px', overflow: 'hidden', borderRadius: '15px' }} >
+        <Grid
+          style={{ width: '750px', height: '650px', overflow: 'auto', borderRadius: '15px' }} >
           <Switch>
             {routes.map((route, index) => (
               <Route key={index}  path={route.path} exact={route.exact} children={<route.main />} />
             ))}
           </Switch>
-        </div>
+        </Grid>
         <div
         style={{ width: '364px', height: '650px', backgroundColor: 'rgba(164, 183, 182, 0.69)', overflow: 'visible', borderRadius: '0px 10px 0px 10px', padding: '10px'
         }}>
@@ -924,7 +943,7 @@ onClick={()=>{
           <Link to="#"><DeleteForeverRoundedIcon  style={{color: 'red', marginBottom: '70%',marginRight: '23px', marginLeft: '14%'}}/></Link>
 
         </div>
-      </div>
+      </Grid>
     </Router>
   );
 }
