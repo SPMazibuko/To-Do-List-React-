@@ -27,6 +27,7 @@ import NotificationsActiveRoundedIcon from '@material-ui/icons/NotificationsActi
 import RepeatRoundedIcon from '@material-ui/icons/RepeatRounded';
 import AttachmentRoundedIcon from '@material-ui/icons/AttachmentRounded';
 import ArrowForwardIosTwoToneIcon from '@material-ui/icons/ArrowForwardIosTwoTone';
+import VisibilityTwoToneIcon from '@material-ui/icons/VisibilityTwoTone';
 //Forms and Cards Imports
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
@@ -51,6 +52,7 @@ import {useHistory} from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore"
+import * as firebase from 'firebase';
 
 //Firebase
 const firebaseConfig = {
@@ -67,6 +69,8 @@ const firebaseConfig = {
 if(!firebase.apps.length){
   firebase.initializeApp(firebaseConfig);
 }
+
+
 //Styles of the application
 const useStyles = makeStyles((theme) => ({
       root:{
@@ -410,6 +414,7 @@ const initialState = {
 }
 
 
+
 function Todo({ todo, index, markTodo, removeTodo }) {
   return (
     <div className="todo" style={{display:'flex'}}>
@@ -425,7 +430,6 @@ function Todo({ todo, index, markTodo, removeTodo }) {
 function FormTodo({ addTodo }) {
   const classes = useStyles();
   const [value, setValue] = React.useState("");
-
   const handleSubmit = e => {
     e.preventDefault();
     if (!value) return;
@@ -738,6 +742,9 @@ const routes = [
 ];
 
 function ToDoList() {
+  const [Datalist,setData]=useState([{name:'Living'}])
+  const [value, setValue] = React.useState("");
+
   const text = {
     color: "black",
     fontWeight: 700, 
@@ -752,7 +759,6 @@ const text2 = {
   return (
     <Router>
 
-<Link onClick={() => {}}><ArrowBackRoundedIcon  fontSize="small"/></Link>
       <div style={{  display: "flex", width: '1356px', height: '650px', boxShadow: '0px 10px 20px 0px rgba(0, 0, 0, 0.05)', overflow: 'hidden', backgroundImage: "url(" + "https://scontent.fjnb11-1.fna.fbcdn.net/v/t1.6435-9/220410270_6101483326591583_5306378977487393636_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_ohc=Mzk5NExrAZEAX_mxea_&_nc_ht=scontent.fjnb11-1.fna&oh=c895bcb3c89cacaa6ae2ea62f0e2bacf&oe=612970A5" + ")", backgroundSize: 'cover', backgroundRepeat: 'no-repeat',backgroundPosition: 'center', borderRadius: '20px' }}>
         <div
           style={{ width: '298px', height: '650px', backgroundColor: 'rgba(164, 183, 182, 0.69)', overflow: 'hidden', borderRadius: '10px 0px 10px 0px'
@@ -787,9 +793,70 @@ const text2 = {
           </ListItem>
           </List>
           <hr/>
-          <Typography style={{color: 'black', marginTop: '230px',marginRight: '0px', marginLeft: '10px', textDecoration:"none" }} >
-<Link  to="/Main" style={{color: '#000000', width: '129px',
-  height: '32px'}} ><AddRoundedIcon /> New List </Link></Typography  >
+
+{/*This Button adds data to the firestore database*/}
+
+      <TextField variant="outlined" margin="normal"id="todoField" name="tolist" padding={5} radius={20}  value={value} onChange={e => setValue(e.target.value)} placeholder="Add new todo" />
+     
+        <Button type="submit" className="add-btn" variant="contained" color="primary" startIcon={<AddCircleOutlineRoundedIcon />}
+         onClick={()=>{ 
+          console.log("writing")
+          firebase.firestore().collection('Lists').add({ListName:value}).then(response=>{
+          console.log(response)})
+        }} style={{}}>
+        Add
+        </Button>
+{' '}
+{/*<button onClick >Write</button>*/}
+{/*Ends here*/}
+
+{/*This button Reads data from firestore*/} 
+<Button type="submit" className="add-btn" variant="contained" color="secondary" startIcon={< VisibilityTwoToneIcon />} 
+onClick={()=>{ 
+    let val=[]
+    console.log("getting")
+    console.log(Datalist)
+    firebase.firestore().collection('Lists').get().then(response=>{
+    console.log(response)
+    response.forEach(data=>{
+         
+    
+      
+      val.push({...{id:data.id},...data.data()})
+       console.log(data.id);
+     
+       //setData(...Datalist,val)
+  
+       
+  
+     })
+  setData(val)
+     //console.log("list = ",val)
+     console.log("list = ",Datalist)
+  
+  })
+  }}>Read</Button>
+{/*Ends Here*/}
+
+          {/*This displays the data from the firestore*/}
+
+          <div className = "App" >
+  <ul>
+  {Datalist.map(person => {
+    return (
+      <li key={person.id} onClick={(data)=>{
+        console.log("click",person)
+
+      }}>
+        {person.ListName}
+      </li>
+    )
+  })}
+</ul>
+     </div>
+
+{/*Ends here*/}
+
           <Switch>
             {routes.map((route, index) => (
               <Route
@@ -799,6 +866,8 @@ const text2 = {
                 children={<route.sidebar />}
               />
             ))}
+
+
           </Switch>
         </div>
 
