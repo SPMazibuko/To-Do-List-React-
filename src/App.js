@@ -454,7 +454,8 @@ function FormTodo({ addTodo }) {
         marginTop:"450px", 
         marginLeft:'22%',
         zIndex: '1',
-        position: 'fixed'
+        position: 'fixed',
+        bottom: '0',
         }}> 
 
       <Form.Group>
