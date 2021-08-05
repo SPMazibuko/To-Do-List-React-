@@ -217,8 +217,8 @@ function Signup(){
   const handleSignUp = (e) =>{
     clearErrors();
     e.preventDefault()
-    if (password !== confirmPassword)  {
-      return setPasswordError('Passwords do not match')
+    if (password !== confirmPassword || password === " ")  {
+      return setPasswordError('Passwords do not match/password not entered')
       }
     firebase
     .auth()
@@ -453,7 +453,8 @@ function FormTodo({ addTodo }) {
         borderRadius: '10px', 
         marginTop:"500px", 
         marginLeft:'22%',
-        zIndex: '1',
+        zIndex: '2',
+        position: 'fixed'
         }}> 
 
       <Form.Group>
