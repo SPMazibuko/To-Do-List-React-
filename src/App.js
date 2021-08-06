@@ -216,8 +216,12 @@ function Signup(){
   const handleSignUp = (e) =>{
     clearErrors();
     e.preventDefault()
-    if (password !== confirmPassword || password === " ")  {
+    if (password !== confirmPassword || password === "")  {
       return setPasswordError('Passwords do not match/password not entered')
+      }
+      else if( email === '')
+      {
+        return setEmailError('Email is required')
       }
     firebase
     .auth()
