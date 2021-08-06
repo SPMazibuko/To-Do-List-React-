@@ -766,6 +766,19 @@ function ToDoList() {
   const [Datalist,setData]=useState([{name:'Living'}])
   const [value, setValue] = React.useState("");
 
+  const history = useHistory()
+  const handleLogout = (e) =>{
+    e.preventDefault()
+    firebase
+      .auth()
+      .signOut()
+      .then((userCredential) => {
+        // Signed in
+        var user = null;
+        history.push("/")
+      })    
+    }
+
   const text = {
     color: "black",
     fontWeight: 700, 
@@ -941,7 +954,7 @@ onClick={()=>{
           </ListItem>
           </List>
 
-          <Link to="/login"><ArrowForwardIosTwoToneIcon style={{color: '', marginBottom: '70%',marginRight: '0px', marginLeft: '10px'}}/></Link>
+          <ArrowForwardIosTwoToneIcon style={{color: 'blue', marginBottom: '70%',marginRight: '0px', marginLeft: '10px'}} onClick={ handleLogout} />
           <Link to="#"><DeleteForeverRoundedIcon  style={{color: 'red', marginBottom: '70%',marginRight: '23px', marginLeft: '14%'}}/></Link>
 
         </div>
