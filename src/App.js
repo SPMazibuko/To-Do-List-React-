@@ -19,7 +19,6 @@ import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 import EventRoundedIcon from '@material-ui/icons/EventRounded';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
-import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded';
 import DoneRoundedIcon from '@material-ui/icons/DoneRounded';
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
