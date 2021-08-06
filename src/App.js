@@ -256,7 +256,7 @@ function Signup(){
     },[])
 
   return(
-    <Grid id="main" container spacing={0} style={{padding: '20px 20px',  position: 'fixed', }} className={classes. paperSyle} >
+    <Grid id="main" container spacing={0} style={{padding: '20px',  position: 'fixed', }} className={classes. paperSyle} >
       <Paper elevation={20} className={classes.root} id="mainPaper" >
        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={20} square style={{ padding: '20px 20px', width: 587, backgroundColor: 'FFFFFF', overflow: 'hidden', borderRadius: '20px 0px 0px 20px', }}>
         <Grid item xs={11} >
@@ -366,7 +366,7 @@ function Login(){
     },[])
 
   return(
-    <Grid id="main" container spacing={0} style={{padding: '20px 20px',  position: 'fixed', }} className={classes. paperSyle}>
+    <Grid id="main" container spacing={0} style={{padding: '20px',  position: 'fixed', }} className={classes. paperSyle}>
       <Paper elevation={20} className={classes.root} id="mainPaper" >
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={20} square style={{ padding: '90px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px 0px 0px 20px' }}>
          <Grid item xs={11} >
