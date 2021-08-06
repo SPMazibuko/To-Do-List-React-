@@ -256,9 +256,9 @@ function Signup(){
     },[])
 
   return(
-    <Grid id="main" container spacing={0} style={{padding: '10px 20px',  position: 'fixed', }} className={classes. paperSyle}>
+    <Grid id="main" container spacing={0} style={{padding: '20px 20px',  position: 'fixed', }} className={classes. paperSyle} >
       <Paper elevation={20} className={classes.root} id="mainPaper" >
-       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={20} square style={{ padding: '20px 20px', width: 587, backgroundColor: '#ffffff', overflow: 'hidden', borderRadius: '20px', }}>
+       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={20} square style={{ padding: '20px 20px', width: 587, backgroundColor: 'FFFFFF', overflow: 'hidden', borderRadius: '20px 0px 0px 20px', }}>
         <Grid item xs={11} >
           <Grid align='center'>
            <h2 style={{overflow: 'visible', whiteSpace: 'pre', fontSize: '46px', letterSpacing: '-2px', color: '#333', lineHeight: '1.1', fontWeight: 700, fontStyle: 'normal', fontFamily: 'Arvo, serif', margin:0, }}>
