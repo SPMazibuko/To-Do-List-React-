@@ -116,6 +116,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
+  },
+  input: {
+    margin: theme.spacing(1),
+    height: 38
   }
 }));
 
@@ -589,10 +593,6 @@ function Login() {
 //=================================================== TodoList Function =================================
 
 // Define an initial state value for the app
-const initialState = {
-  text: '',
-  isDone: false
-};
 
 function Todo({ todo, index, markTodo, removeTodo }) {
   return (
@@ -628,82 +628,9 @@ function Todo({ todo, index, markTodo, removeTodo }) {
   );
 }
 
-function FormTodo({ addTodo }) {
+function FormTodo() {
   const classes = useStyles();
-  const [value, setValue] = React.useState('');
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!value) return;
-    addTodo(value);
-    setValue('');
-  };
-
-  return (
-    <div className={classes.root}>
-      <Form
-        onSubmit={handleSubmit}
-        style={{
-          width: '659px',
-          display: 'flex',
-          flexDirection: 'culumn',
-          padding: '10px 38px 39px 38px',
-          borderRadius: '10px',
-          marginTop: '450px',
-          marginLeft: '22%',
-          zIndex: '1',
-          position: 'fixed',
-          bottom: '0'
-        }}
-      >
-        <Form.Group>
-          <Form.Control
-            type="text"
-            className=""
-            value={value}
-            onChange={e => setValue(e.target.value)}
-            placeholder="Add new todo"
-          />
-        </Form.Group>
-        <Button
-          type="submit"
-          className="add-btn"
-          variant="contained"
-          startIcon={<AddCircleOutlineRoundedIcon />}
-        >
-          Add
-        </Button>
-      </Form>
-    </div>
-  );
-}
-
-function MyDay() {
-  const [todos, setTodos] = useState([]);
   const [input, setInput] = useState('');
-  const [open, setOpen] = useState(false);
-  const [update, setUpdate] = useState('');
-  const [toUpdateId, setToUpdateId] = useState('');
-
-  useEffect(() => {
-    console.log('useEffect Hook!!!');
-
-    firebase
-      .firestore()
-      .collection('todos')
-      .orderBy('datetime', 'desc')
-      .onSnapshot(snapshot => {
-        console.log('Firebase Snap!');
-        setTodos(
-          snapshot.docs.map(doc => {
-            return {
-              id: doc.id,
-              name: doc.data().todo,
-              datatime: doc.data().datatime
-            };
-          })
-        );
-      });
-  }, []);
 
   const addTodo = event => {
     event.preventDefault();
@@ -716,6 +643,44 @@ function MyDay() {
       });
     setInput('');
   };
+
+  return (
+    <div className={classes.root}>
+      <form noValidate>
+      <TextField className={classes.input} variant="outlined" margin="normal" required  id="todo" label="Enter Your Todo" name="todo" value={input} onChange={event => setInput(event.target.value)}/>
+
+     <Button className={classes.input} type="submit" variant="contained" color="primary" onClick={addTodo} disabled={!input} startIcon={<AddCircleOutlineRounded />}>Add</Button>   
+    </form>
+    </div>
+  );
+}
+
+function MyDay() {
+  const [todos, setTodos] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [update, setUpdate] = useState('');
+  const [toUpdateId, setToUpdateId] = useState('');
+ 
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection('Lists')
+      .orderBy('datetime', 'desc')
+      .onSnapshot(snapshot => {
+        setTodos(
+          snapshot.docs.map(doc => {
+            return {
+              id: doc.id,
+              name: doc.data().todo,
+              datatime: doc.data().datatime
+            };
+          })
+        );
+      });
+  }, []);
+
+  
 
   const markTodo = index => {
     const newTodos = [...todos];
@@ -754,16 +719,10 @@ function MyDay() {
   };
 
   return (
-    <div className="" style={{ display: 'flex', flexDirection: 'column', borderRadius: '15px'}}
-    >
-      <div className="">
-      <Container maxWidth="sm">
-        <form noValidate>
-          <TextField variant="outlined" margin="normal" required fullWidth id="todo" label="Enter Your Todo" name="todo" value={input} onChange={event => setInput(event.target.value)}/>
 
-          <Button type="submit" variant="contained" color="primary" fullWidth onClick={addTodo} disabled={!input} startIcon={<AddCircleOutlineRounded />}>Add</Button>
-          
-        </form>
+    <div>
+      <Container maxWidth="sm">
+
         <List dense={true}>
           {
             todos.map(todo => (
@@ -771,40 +730,27 @@ function MyDay() {
                 <ListItemText primary={todo.name} secondary={todo.datetime} />
                   <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="Edit" onClick={() => openUpdateDialog(todo)}>
-                <Edit />
+                <Edit  style={{color: 'white'}}/>
                 </IconButton>
                 <IconButton edge="end" aria-label="delete" onClick={() => deleteTodo(todo.id)}>
-                  <DeleteOutlineRounded />
+                  <DeleteOutlineRounded style={{
+                color: 'red'}} />
                 </IconButton>
               </ListItemSecondaryAction>
-            </ListItem>
-          ))
+            </ListItem> ))
           }
         </List>
         <Dialog open={open} onClose={handleClose}>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="normal"
-            label="Update Todo"
-            type="text"
-            fullWidth
-            name="updateTodo"
-            value={update}
-            onChange={event => setUpdate(event.target.value)}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={editTodo} color="primary">
-            Save
-          </Button>
-        </DialogActions>
+          <DialogContent>
+            <TextField autoFocus margin="normal" label="Update Todo" type="text" fullWidth  name="updateTodo" value={update} onChange={event => setUpdate(event.target.value)} />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary"> Cancel </Button>
+            <Button onClick={editTodo} color="primary"> Save </Button>
+          </DialogActions>
         </Dialog>
       </Container>
-      </div>
+      <FormTodo />
     </div>
   );
 }
