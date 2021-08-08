@@ -726,7 +726,7 @@ function MyDay() {
   const deleteTodo = id => {
     firebase
       .firestore()
-      .collection('todos')
+      .collection('Lists')
       .doc(id)
       .delete()
       .then(res => {
@@ -735,7 +735,7 @@ function MyDay() {
   };
 
   const editTodo = () => {
-    db.collection('todos')
+    firebase.firestore().collection('Lists')
       .doc(toUpdateId)
       .update({
         todo: update
@@ -759,11 +759,50 @@ function MyDay() {
       <div className="">
       <Container maxWidth="sm">
         <form noValidate>
-          <TextField variant="outlined" margin="normal" required fullWidth id="todo" label="Enter ToDo" name="todo" autoFocus value={input} onChange={event => setInput(event.target.value)}/>
+          <TextField variant="outlined" margin="normal" required fullWidth id="todo" label="Enter Your Todo" name="todo" value={input} onChange={event => setInput(event.target.value)}/>
 
           <Button type="submit" variant="contained" color="primary" fullWidth onClick={addTodo} disabled={!input} startIcon={<AddCircleOutlineRounded />}>Add</Button>
           
         </form>
+        <List dense={true}>
+          {
+            todos.map(todo => (
+              <ListItem key={todo.id} >
+                <ListItemText primary={todo.name} secondary={todo.datetime} />
+                  <ListItemSecondaryAction>
+                <IconButton edge="end" aria-label="Edit" onClick={() => openUpdateDialog(todo)}>
+                <Edit />
+                </IconButton>
+                <IconButton edge="end" aria-label="delete" onClick={() => deleteTodo(todo.id)}>
+                  <DeleteOutlineRounded />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))
+          }
+        </List>
+        <Dialog open={open} onClose={handleClose}>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="normal"
+            label="Update Todo"
+            type="text"
+            fullWidth
+            name="updateTodo"
+            value={update}
+            onChange={event => setUpdate(event.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={editTodo} color="primary">
+            Save
+          </Button>
+        </DialogActions>
+        </Dialog>
       </Container>
       </div>
     </div>
