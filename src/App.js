@@ -661,6 +661,13 @@ function MyDay() {
   const [update, setUpdate] = useState('');
   const [toUpdateId, setToUpdateId] = useState('');
  
+  const todoText = {
+    color: 'blue',
+    fontWeight: 700,
+    fontStyle: 'normal',
+    fontFamily: 'Arvo, serif',
+    fontSize: '19px'
+  };
 
   useEffect(() => {
     firebase
@@ -727,7 +734,7 @@ function MyDay() {
           {
             todos.map(todo => (
               <ListItem key={todo.id} >
-                <ListItemText primary={todo.name} secondary={todo.datetime} />
+                <ListItemText primaryTypographyProps={{ style: todoText }} primary={todo.name} secondary={todo.datetime} />
                   <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="Edit" onClick={() => openUpdateDialog(todo)}>
                 <Edit  style={{color: 'white'}}/>
