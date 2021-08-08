@@ -754,16 +754,17 @@ function MyDay() {
   };
 
   return (
-    <div
-      className=""
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        borderRadius: '15px'
-      }}
+    <div className="" style={{ display: 'flex', flexDirection: 'column', borderRadius: '15px'}}
     >
       <div className="">
- 
+      <Container maxWidth="sm">
+        <form noValidate>
+          <TextField variant="outlined" margin="normal" required fullWidth id="todo" label="Enter ToDo" name="todo" autoFocus value={input} onChange={event => setInput(event.target.value)}/>
+
+          <Button type="submit" variant="contained" color="primary" fullWidth onClick={addTodo} disabled={!input} startIcon={<AddCircleOutlineRounded />}>Add</Button>
+          
+        </form>
+      </Container>
       </div>
     </div>
   );
