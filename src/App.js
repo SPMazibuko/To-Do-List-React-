@@ -655,7 +655,7 @@ function MyDay() {
       if (user) {
         var uid = user.uid;
         setUseruid(user.uid)
-        console.log('Use Effect',userUid)
+        console.log('Use Effect',uid)
         firebase
         .firestore()
         .collection('Lists')
