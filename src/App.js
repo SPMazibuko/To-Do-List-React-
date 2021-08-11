@@ -762,9 +762,9 @@ function MyDay() {
       <form 
       noValidate
       style={{
-         position:'absolute',
+         position:'fixed',
          ZIndex:1,
-         marginTop: '500px',
+         marginTop: '450px',
          }}>
       <h6>User_ID: {userUid}</h6>
       <TextField className={classes.input} variant="outlined" margin="normal" required  id="todo" label="Enter Your Todo" name="todo" value={input} onChange={event => setInput(event.target.value)}/>
