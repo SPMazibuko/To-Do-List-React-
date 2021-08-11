@@ -204,11 +204,11 @@ export default function App() {
 }
 
 //============================================ Signup Function ==================================
-
 function Signup() {
   const classes = useStyles();
 
   const [user, setUser] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -325,7 +325,9 @@ function Signup() {
                   name="name"
                   padding={44}
                   radius={8}
+                  value={name}
                   label="Name:"
+                  onChange={e => setName(e.target.value)}
                 />
 
                 <TextField
@@ -595,6 +597,7 @@ function Login() {
 // Define an initial state value for the app
 
 function Todo({ todo, index, markTodo, removeTodo }) {
+
   return (
     <div
       style={{
@@ -628,39 +631,17 @@ function Todo({ todo, index, markTodo, removeTodo }) {
   );
 }
 
-function FormTodo() {
-  const classes = useStyles();
-  const [input, setInput] = useState('');
-
-  const addTodo = event => {
-    event.preventDefault();
-    firebase
-      .firestore()
-      .collection('Lists')
-      .add({
-        todo: input,
-        datetime: firebase.firestore.FieldValue.serverTimestamp()
-      });
-    setInput('');
-  };
-
-  return (
-    <div className={classes.root}>
-      <form noValidate>
-      <TextField className={classes.input} variant="outlined" margin="normal" required  id="todo" label="Enter Your Todo" name="todo" value={input} onChange={event => setInput(event.target.value)}/>
-
-     <Button className={classes.input} type="submit" variant="contained" color="primary" onClick={addTodo} disabled={!input} startIcon={<AddCircleOutlineRounded />}>Add</Button>   
-    </form>
-    </div>
-  );
-}
 
 function MyDay() {
   const [todos, setTodos] = useState([]);
   const [open, setOpen] = useState(false);
   const [update, setUpdate] = useState('');
+  const [input, setInput] = useState('');
   const [toUpdateId, setToUpdateId] = useState('');
+  const [userUid,setUseruid]=useState('')
  
+  const classes = useStyles();
+
   const todoText = {
     color: 'blue',
     fontWeight: 700,
@@ -670,24 +651,43 @@ function MyDay() {
   };
 
   useEffect(() => {
-    firebase
-      .firestore()
-      .collection('Lists')
-      .orderBy('datetime', 'desc')
-      .onSnapshot(snapshot => {
-        setTodos(
-          snapshot.docs.map(doc => {
-            return {
-              id: doc.id,
-              name: doc.data().todo,
-              datatime: doc.data().datatime
-            };
-          })
-        );
-      });
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        var uid = user.uid;
+        setUseruid(user.uid)
+        console.log('Use Effect',userUid)
+        firebase
+        .firestore()
+        .collection('Lists')
+        .where('userUid','==',user.uid)
+        .orderBy('datetime', 'desc')
+        .onSnapshot(snapshot => {
+          setTodos(
+            snapshot.docs.map(doc => {
+              return {
+                id: doc.id,
+                name: doc.data().todo,
+                datatime: doc.data().datatime
+              };
+            })
+          );
+        });
+      }
+    })
   }, []);
 
-  
+  const addTodo = event => {
+    event.preventDefault();
+    firebase
+      .firestore()
+      .collection("Lists")
+      .add({
+        userUid:userUid,
+        todo: input,
+        datetime: firebase.firestore.FieldValue.serverTimestamp()
+      })
+  setInput('')
+}
 
   const markTodo = index => {
     const newTodos = [...todos];
@@ -757,7 +757,14 @@ function MyDay() {
           </DialogActions>
         </Dialog>
       </Container>
-      <FormTodo />
+      <div className={classes.root}>
+      <form noValidate>
+      <h6>User_ID: {userUid}</h6>
+      <TextField className={classes.input} variant="outlined" margin="normal" required  id="todo" label="Enter Your Todo" name="todo" value={input} onChange={event => setInput(event.target.value)}/>
+
+     <Button className={classes.input} type="submit" variant="contained" color="primary" onClick={addTodo} disabled={!input} startIcon={<AddCircleOutlineRounded />}>Add</Button>   
+    </form>
+    </div>
     </div>
   );
 }
